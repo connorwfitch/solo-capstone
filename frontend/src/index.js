@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import configureStore from './store';
+import { restoreCSRF, csrfFetch } from "./store/csrf";
 
 // Creating root
 const reactContainer = document.getElementById('root');
@@ -18,6 +19,10 @@ const store = configureStore();
 
 // Protection when in production
 if (process.env.NODE_ENV !== 'production') {
+  restoreCSRF();
+
+  window.store = store;
+  window.csrfFetch = csrfFetch;
   window.store = store;
 }
 
