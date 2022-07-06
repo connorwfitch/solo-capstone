@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
-User model and migrations and seeder
+User Model, Migration, and Seeder
 
 npx sequelize model:generate --name User --attributes username:string,email:string,hashedPassword:string
 npx dotenv sequelize db:migrate
@@ -10,3 +10,53 @@ npx sequelize seed:generate --name demo-user
 npx dotenv sequelize db:seed:all
 npx dotenv sequelize db:seed:undo
 npx dotenv sequelize db:seed:undo:all
+
+--------------------------------------------------------------------------------
+Models and Migrations
+npx sequelize model:generate --name Story --attributes title:string,headerImgUrl:text,content:text,userId:integer
+npx sequelize model:generate --name Comment --attributes content:text,userId:integer,storyId:integer
+npx sequelize model:generate --name Like --attributes userId:integer,storyId:integer
+npx sequelize model:generate --name Topic --attributes name:string
+npx sequelize model:generate --name StoryTopic --attributes topicId:integer,storyId:integer
+
+npx dotenv sequelize db:drop
+npx dotenv sequelize db:create
+
+npx dotenv sequelize db:migrate
+
+
+--------------------------------------------------------------------------------
+Seeders
+npx sequelize seed:generate --name StorySeeder
+npx sequelize seed:generate --name CommentSeeder
+npx sequelize seed:generate --name TopicSeeder
+npx sequelize seed:generate --name StoryTopicSeeder
+
+npx dotenv sequelize db:seed:all
+
+undo/reset:
+
+npx dotenv sequelize db:seed:undo:all
+npx dotenv sequelize db:migrate:undo:all
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+
+
+--------------------------------------------------------------------------------
+Heroku
+
+heroku login
+
+heroku git:remote -a twodoist
+
+git push heroku
+
+heroku run npm run sequelize db:migrate
+heroku run npm run sequelize db:seed:all
+
+undo stuff:
+
+heroku run npm run sequelize db:seed:undo:all
+heroku run npm run sequelize db:migrate:undo:all
+heroku run npm run sequelize db:migrate
+heroku run npm run sequelize db:seed:all
