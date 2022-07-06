@@ -2,7 +2,6 @@
 module.exports = (sequelize, DataTypes) => {
   const List = sequelize.define('List', {
     title: DataTypes.STRING,
-    icon: DataTypes.STRING,
     color: DataTypes.STRING,
     userId: DataTypes.INTEGER
   }, {});

@@ -27,10 +27,11 @@ npx dotenv sequelize db:migrate
 
 --------------------------------------------------------------------------------
 Seeders
-npx sequelize seed:generate --name StorySeeder
-npx sequelize seed:generate --name CommentSeeder
-npx sequelize seed:generate --name TopicSeeder
-npx sequelize seed:generate --name StoryTopicSeeder
+npx sequelize seed:generate --name ListSeeder
+npx sequelize seed:generate --name TaskSeeder
+npx sequelize seed:generate --name TagSeeder
+npx sequelize seed:generate --name TaskTagSeeder
+npx sequelize seed:generate --name FilterSeeder
 
 npx dotenv sequelize db:seed:all
 

@@ -19,6 +19,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       completed: {
+        allowNull: false,
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
