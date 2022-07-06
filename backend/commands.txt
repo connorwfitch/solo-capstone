@@ -13,11 +13,11 @@ npx dotenv sequelize db:seed:undo:all
 
 --------------------------------------------------------------------------------
 Models and Migrations
-npx sequelize model:generate --name Story --attributes title:string,headerImgUrl:text,content:text,userId:integer
-npx sequelize model:generate --name Comment --attributes content:text,userId:integer,storyId:integer
-npx sequelize model:generate --name Like --attributes userId:integer,storyId:integer
-npx sequelize model:generate --name Topic --attributes name:string
-npx sequelize model:generate --name StoryTopic --attributes topicId:integer,storyId:integer
+npx sequelize model:generate --name List --attributes title:string,icon:string,color:string,userId:integer
+npx sequelize model:generate --name Task --attributes title:string,details:text,dueAt:date,completed:boolean,listId:integer,userId:integer
+npx sequelize model:generate --name Tag --attributes title:string,color:string,userId:integer
+npx sequelize model:generate --name TaskTag --attributes taskId:integer,tagId:integer
+npx sequelize model:generate --name Filter --attributes title:string,color:string,query:text,userId:integer
 
 npx dotenv sequelize db:drop
 npx dotenv sequelize db:create

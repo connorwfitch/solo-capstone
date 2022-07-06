@@ -29,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
-    }
+    },
+    color: DataTypes.STRING,
   },
     {
       defaultScope: {
@@ -48,7 +49,10 @@ module.exports = (sequelize, DataTypes) => {
     });
 
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.List, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
+    User.hasMany(models.Task, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
+    User.hasMany(models.Tag, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
+    User.hasMany(models.Filter, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
   };
 
   // User instance methods
