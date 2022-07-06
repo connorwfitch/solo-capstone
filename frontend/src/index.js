@@ -9,6 +9,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
+import * as sessionActions from "./store/session";
 
 // Creating root
 const reactContainer = document.getElementById('root');
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
   window.store = store;
+  window.sessionActions = sessionActions;
 }
 
 function Root() {
