@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import LoginPage from "./components/Login";
 import SignupPage from "./components/Signup";
+import Navigation from "./components/Navigation";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,15 +16,20 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return isLoaded && (
-    <Switch>
-      <Route path="/login">
-        <LoginPage />
-      </Route>
-      <Route path="/signup">
-        <SignupPage />
-      </Route>
-    </Switch>
+  return (
+    <>
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/signup">
+            <SignupPage />
+          </Route>
+        </Switch>
+      )}
+    </>
   );
 }
 
