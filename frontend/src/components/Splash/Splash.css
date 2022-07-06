@@ -1,0 +1,88 @@
+.splash-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1100px;
+  box-sizing: border-box;
+  margin-top: 15px;
+}
+
+.splash-nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-link > * {
+  margin: 0;
+  color: #E44332;
+}
+
+.splash-main {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  width: 1100px;
+  margin-bottom: 100px;
+}
+
+.splash-central {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.splash-central-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.splash-central-text * {
+  margin: 0;
+  text-align: center;
+}
+
+.splash-img-large {
+  width: 100%;
+}
+
+.splash-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.splash-display-img {
+  max-width: 100%;
+  max-height: 450px;
+}
+
+@media screen and (max-width: 1150px) {
+  .splash-nav {
+    width: 100%;
+    padding: 0px 10px;
+  }
+
+  .splash-main {
+    width: 100%;
+    padding: 0px 10px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .splash-nav {
+    flex-direction: column;
+  }
+}
