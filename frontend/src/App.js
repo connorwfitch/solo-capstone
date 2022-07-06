@@ -6,9 +6,11 @@ import { Route, Switch } from "react-router-dom";
 // Internal modules
 import * as sessionActions from "./store/session";
 import ProtectedRoute from "./components/Misc/ProtectedRoute";
+import Splash from "./components/Splash";
 import LoginPage from "./components/Login";
 import SignupPage from "./components/Signup";
-import Navigation from "./components/Navigation";
+import About from "./components/Misc/About";
+import NotFound from "./components/Misc/NotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,23 +19,27 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return (
-    <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+  return isLoaded && (
         <Switch>
-          <Route path="/login">
+          <Route exact path="/">
+            <Splash />
+          </Route>
+          <Route exact path="/login">
             <LoginPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupPage />
+          </Route>
+          <Route exact path='/about'>
+            <About />
           </Route>
           <ProtectedRoute path="/app">
             {/* Primary app components */}
           </ProtectedRoute>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
-      )}
-    </>
   );
 }
 

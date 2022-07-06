@@ -1,0 +1,36 @@
+.no-decor {
+  text-decoration: none;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-large {
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 0px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-white {
+  background-color: white;
+  color: black;
+}
+
+.btn-white:hover {
+  background-color: #f2f2f2;
+}
+
+.btn-red {
+  background-color: #E44332;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #e44432cd;
+}
+
