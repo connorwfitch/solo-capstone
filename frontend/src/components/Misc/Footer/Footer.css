@@ -1,0 +1,38 @@
+.footer {
+  background-color: #FAE8D5;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  box-shadow: 0px 0px 30px 30px #FAE8D5;
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+
+.footer-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer * {
+  margin: 0;
+}
+
+.footer-link {
+  color: black;
+  font-weight: lighter;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  font-weight: normal;
+} 
+
+@media screen and (max-width: 550px) {
+  .footer {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+}

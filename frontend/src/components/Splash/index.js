@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // Internal modules
 import SplashNav from './SplashNav';
 import './Splash.css';
+import Footer from '../Misc/Footer';
 
 function Splash() {
   return (
@@ -48,6 +49,7 @@ function Splash() {
           <img src='/images/tada.png' className='splash-display-img' alt='illustration of productive people' />
         </div>
       </div>
+      <Footer />
     </>
   )
 }
