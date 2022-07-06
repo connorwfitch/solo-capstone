@@ -5,7 +5,7 @@ function SplashNav() {
   return (
     <nav className='splash-nav'>
       <Link to='/' className='no-decor logo-link'>
-        <img src="/images/logo.png" className='logo' alt='twodoist logo'/>
+        <img src='/images/logo.png' className='logo' alt='twodoist logo'/>
         <h3>twodoist</h3>
       </Link>
       <div className='splash-nav-links'>
