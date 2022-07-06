@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "./store/session";
+import ProtectedRoute from "./components/Misc/ProtectedRoute";
 import LoginPage from "./components/Login";
 import SignupPage from "./components/Signup";
 import Navigation from "./components/Navigation";
@@ -27,6 +28,9 @@ function App() {
           <Route path="/signup">
             <SignupPage />
           </Route>
+          <ProtectedRoute path="/app">
+            {/* Primary app components */}
+          </ProtectedRoute>
         </Switch>
       )}
     </>
