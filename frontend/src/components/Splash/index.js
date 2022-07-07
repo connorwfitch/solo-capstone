@@ -1,5 +1,6 @@
 // External modules
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // Internal modules
 import SplashNav from './SplashNav';
@@ -7,6 +8,24 @@ import './Splash.css';
 import Footer from '../Misc/Footer';
 
 function Splash() {
+  const user = useSelector(state => state.session.user);
+
+  let startButton;
+
+  if (user) {
+    startButton = (
+      <Link to='/app' className='btn-large btn-red'>
+        Enter the app
+      </Link>
+    )
+  } else {
+    startButton = (
+      <Link to='/login' className='btn-large btn-red'>
+        Start for free
+      </Link>
+    )
+  }
+
   return (
     <>
       <SplashNav />
@@ -18,9 +37,7 @@ function Splash() {
               <p className='light'>Become focused, organized, and calm with Twodoist.</p>
               <p className='light'>A clone of the world's #1 task manager.</p>
             </div>
-            <Link to='/login' className='btn-large btn-red'>
-              Start for free
-            </Link>
+            {startButton}
           </div>
           <img src='/images/large.jpeg' className='splash-img-large' alt='illustration of productive people' />
         </div>
