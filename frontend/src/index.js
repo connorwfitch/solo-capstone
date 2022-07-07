@@ -6,7 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Internal modules
 import './index.css';
-import './button.css';
+import './css/button.css';
+import './css/form.css';
+import './css/auth.css';
 import App from './App';
 import { ModalProvider } from "./context/Modal"
 import configureStore from './store';
