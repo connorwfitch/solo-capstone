@@ -1,0 +1,9 @@
+.auth-page {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.auth-img {
+  max-width: 400px;
+}

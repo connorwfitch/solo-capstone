@@ -5,6 +5,7 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
+import SplashNav from "../Splash/SplashNav";
 
 function LoginPage() {
   const user = useSelector(state => state.session.user);
@@ -31,55 +32,61 @@ function LoginPage() {
   );
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>
-          Please Log In
-        </h2>
-        {errors.length > 0 && <ul className="errors">
-          {errors.map((error, i) => (
-            <li key={i}>{error}</li>
-          ))}
-        </ul>}
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <div>
-          <button
-            onClick={(e) => {
+    <>
+      <SplashNav />
+      <div className='auth-page'>
+        <form onSubmit={handleSubmit} className='auth-form'>
+          <h2>
+            Log in
+          </h2>
+          {errors.length > 0 && <ul className="errors">
+            {errors.map((error, i) => (
+              <li key={i}>{error}</li>
+            ))}
+          </ul>}
+          <label>
+            Username or Email
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              placeholder='Enter your username or email...'
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Enter your password...'
+              required
+            />
+          </label>
+          <div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                history.push('/');
+              }}
+              className="btn btn-white"
+            >
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-red">Log In</button>
+            <button type="button" onClick={(e) => {
               e.preventDefault();
-              history.push('/');
-            }}
-            className="button cancel"
-          >
-            Cancel
-          </button>
-          <button type="submit" className="button red">Log In</button>
-        </div>
-        <button type="button" onClick={(e) => {
-          e.preventDefault();
-          dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }));
-        }} className="button red">Use Demo Credentials</button>
-        <Link to='/signup'>
-          Don't have an account?
-        </Link>
-      </form>
-    </div>
+              dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }));
+            }} className="btn btn-red">Use Demo Credentials</button>
+          </div>
+          <Link to='/signup' className='link-small'>
+            No account? Sign up
+          </Link>
+        </form>
+        <img src='/images/auth.png' className='auth-img' alt='illustrated computer'/>
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,30 @@
+input {
+  font-family: 'Poppins';
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+}
+
+.auth-form > label {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: lighter;
+  font-size: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-form input {
+  border: none;
+}
+
+.auth-form input:focus {
+  outline: none;
+}
