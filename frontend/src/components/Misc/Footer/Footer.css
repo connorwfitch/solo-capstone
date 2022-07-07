@@ -35,4 +35,8 @@
     gap: 30px;
     align-items: center;
   }
+
+  .footer-holder {
+    width: 40%;
+  }
 }
