@@ -49,7 +49,6 @@ function LoginPage() {
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
-              placeholder='Enter your username or email...'
               required
             />
           </label>
@@ -59,7 +58,6 @@ function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder='Enter your password...'
               required
             />
           </label>

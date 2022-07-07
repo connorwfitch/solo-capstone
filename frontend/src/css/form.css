@@ -2,3 +2,14 @@ input {
   font-family: 'Poppins';
 }
 
+.errors {
+  border: 2px solid #E44332;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 30px 10px;
+}
+
+.errors > * {
+  color: #E44332;
+}
