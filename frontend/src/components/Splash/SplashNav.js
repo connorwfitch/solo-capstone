@@ -19,7 +19,7 @@ function SplashNav() {
     buttons = (
       <>
         <button onClick={logout} className='btn-large btn-white'>
-          Log Out
+          Log out
         </button>
         <Link to='/app' className='btn-large btn-red'>
           Enter app
