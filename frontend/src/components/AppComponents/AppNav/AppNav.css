@@ -4,11 +4,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 32px;
+  padding-left: 32px;
+  padding-right: 32px;
+  height: 48px;
   box-sizing: border-box;
+  position: relative;
+}
+
+.app-nav-holder {
+  display: flex;
+  align-items: center;
 }
 
 .app-nav-btn {
+  font-size: 22px;
   background-color: #DB4C3F;
   color: white;
 }

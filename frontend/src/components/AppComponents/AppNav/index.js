@@ -10,8 +10,7 @@ function AppNav({ showSidebar, setShowSidebar }) {
 
   return (
     <nav className="app-nav">
-      <div>
-        {/* hamburger and search */}
+      <div className='app-nav-holder'>
         <button className="btn app-nav-btn" onClick={() => setShowSidebar(!showSidebar)}>
           <i className="fa-solid fa-bars"></i>
         </button>
