@@ -27,7 +27,7 @@ function LoginPage() {
   };
 
   if (user) return (
-    <Redirect to="/" />
+    <Redirect to="/app" />
   );
 
   return (

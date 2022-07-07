@@ -31,7 +31,7 @@ function SignupPage() {
   };
 
   if (user) return (
-    <Redirect to="/" />
+    <Redirect to="/app" />
   );
 
   return (

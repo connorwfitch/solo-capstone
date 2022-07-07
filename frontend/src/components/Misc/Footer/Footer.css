@@ -1,3 +1,7 @@
+.footer-below {
+  padding-bottom: 330px;
+}
+
 .footer {
   background-color: #FAE8D5;
   display: flex;
@@ -6,6 +10,8 @@
   box-shadow: 0px 0px 30px 30px #FAE8D5;
   padding-bottom: 40px;
   padding-top: 20px;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer-holder {
@@ -30,6 +36,10 @@
 } 
 
 @media screen and (max-width: 550px) {
+  .footer-below {
+    padding-bottom: 690px;
+  }
+
   .footer {
     flex-direction: column;
     gap: 30px;
@@ -38,5 +48,11 @@
 
   .footer-holder {
     width: 40%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .footer-below {
+    padding-bottom: 750px;
   }
 }

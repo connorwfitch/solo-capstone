@@ -29,7 +29,7 @@ function Splash() {
   return (
     <>
       <SplashNav />
-      <div className='splash-main'>
+      <div className='splash-main footer-below'>
         <div className='splash-central'>
           <div className='splash-central-text'>
             <h1>Organize your work and life, finally.</h1>
