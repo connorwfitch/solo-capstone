@@ -89,7 +89,7 @@ function SignupPage() {
             dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }));
           }} className="btn-large btn-red">Use Demo Credentials</button>
           <Link to='/login' className="link-small">
-            Already have an account?
+            Already have an account? Log in
           </Link>
         </form>
         <img src='/images/auth.png' className='auth-img' alt='illustrated computer' />
