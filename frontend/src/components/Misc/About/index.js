@@ -1,13 +1,12 @@
 // Internal modules
 import SplashNav from "../../Splash/SplashNav";
-import Footer from "../Footer";
 import './About.css'
 
 function About() {
   return (
     <>
       <SplashNav />
-      <div className="about-main footer-below">
+      <div className="about-main">
         <h1>About</h1>
         <div className="about-text">
           <p className="light">
@@ -40,7 +39,6 @@ function About() {
         </div>
         <img src="/images/cards.png" className='about-img' alt='productive people' />
       </div>
-      <Footer />
     </>
   )
 }

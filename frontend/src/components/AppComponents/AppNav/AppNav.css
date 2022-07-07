@@ -1,0 +1,18 @@
+.app-nav {
+  width: 100%;
+  background-color: #DB4C3F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 32px;
+  box-sizing: border-box;
+}
+
+.app-nav-btn {
+  background-color: #DB4C3F;
+  color: white;
+}
+
+.app-nav-btn:hover {
+  background-color: #E37267;
+}

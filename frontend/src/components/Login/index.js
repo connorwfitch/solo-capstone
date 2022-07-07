@@ -1,7 +1,7 @@
 // External modules
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
@@ -10,6 +10,7 @@ import SplashNav from "../Splash/SplashNav";
 function LoginPage() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +28,7 @@ function LoginPage() {
   };
 
   if (user) return (
-    <Redirect to="/" />
+    <Redirect to="/app" />
   );
 
   return (
