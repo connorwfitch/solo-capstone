@@ -1,7 +1,7 @@
 // External modules
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
@@ -10,7 +10,6 @@ import SplashNav from "../Splash/SplashNav";
 function LoginPage() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -64,22 +63,11 @@ function LoginPage() {
               required
             />
           </label>
-          <div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                history.push('/');
-              }}
-              className="btn btn-white"
-            >
-              Cancel
-            </button>
-            <button type="submit" className="btn btn-red">Log In</button>
+            <button type="submit" className="btn-large btn-red">Log In</button>
             <button type="button" onClick={(e) => {
               e.preventDefault();
               dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }));
-            }} className="btn btn-red">Use Demo Credentials</button>
-          </div>
+            }} className="btn-large btn-red">Use Demo Credentials</button>
           <Link to='/signup' className='link-small'>
             No account? Sign up
           </Link>
