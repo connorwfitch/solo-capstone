@@ -7,7 +7,7 @@ function About() {
   return (
     <>
       <SplashNav />
-      <div className="about-main">
+      <div className="about-main footer-below">
         <h1>About</h1>
         <div className="about-text">
           <p className="light">
