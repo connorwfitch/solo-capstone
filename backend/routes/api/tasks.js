@@ -33,12 +33,12 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 // PATCH /api/tasks/:taskId (update a task)
 router.patch('/:taskId', requireAuth, asyncHandler(async (req, res) => {
   const taskId = parseInt(req.params.taskId, 10);
-  const { title, details, dueAt, listId, userId } = req.body;
+  const { title, details, dueAt, listId } = req.body;
 
   const task = await Task.findByPk(taskId);
   
   // QUESTION: Passing along optional values???
-  await task.update({ title, details, dueAt, listId, userId })
+  await task.update({ title, details, dueAt, listId})
 
   return res.json({
     task

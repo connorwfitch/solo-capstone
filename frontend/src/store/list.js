@@ -31,7 +31,7 @@ export const getLists = (userId) => async dispatch => {
   }
 }
 
-export const makeList = (list) => async dispatch => {
+export const createList = (list) => async dispatch => {
   const { title, color, userId } = list;
   const response = await csrfFetch('/api/lists', {
     method: 'POST',
