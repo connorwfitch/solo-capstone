@@ -1,9 +1,10 @@
 // External modules
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
 import { createList } from "../../../store/list";
+import ColorSelector from "../../Misc/ColorSelector";
 
 function AddListForm() {
   const user = useSelector(state => state.session.user);
@@ -23,17 +24,34 @@ function AddListForm() {
       }
     );
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <h2>
-        {user.username}
+        Add list
       </h2>
       {errors.length > 0 && <ul className="errors">
         {errors.map((error, i) => (
           <li key={i}>{error}</li>
         ))}
       </ul>}
+      <label>
+        Title
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Color
+        <ColorSelector 
+          defaultVal={color}
+          setColor={setColor}
+        />
+      </label>
+      {color}
     </form>
   );
 };
