@@ -15,7 +15,7 @@ function AddListModal() {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddListForm />
+          <AddListForm setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

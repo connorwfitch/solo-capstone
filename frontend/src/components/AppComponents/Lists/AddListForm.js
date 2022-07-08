@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createList } from "../../../store/list";
 import ColorSelector from "../../Misc/ColorSelector";
 
-function AddListForm() {
+function AddListForm({ setShowModal }) {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -17,16 +17,18 @@ function AddListForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createList({ title, color, userId: user.id })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    return dispatch(createList({ title, color, userId: user.id }))
+      .then(setShowModal(false))
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
   };
   
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='modal-form' onSubmit={handleSubmit}>
       <h2>
         Add list
       </h2>
@@ -51,7 +53,17 @@ function AddListForm() {
           setColor={setColor}
         />
       </label>
-      {color}
+      <button type="submit" className="btn-large btn-red">Add</button>
+      <button 
+        className="btn-large btn-white"
+        type='button'
+        onClick={(e) => {
+          e.preventDefault();
+          setShowModal(false);
+        }}
+      >
+        Cancel
+      </button>
     </form>
   );
 };
