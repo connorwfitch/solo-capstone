@@ -7,7 +7,24 @@ import './Sidebar.css'
 
 function Sidebar({ showSidebar }) {
   return showSidebar && (
-    <h2>Sidebar showing!</h2>
+    <div className="sidebar">
+      <div className="sidebar-section">
+
+      </div>
+      <div className="sidebar-section">
+        <div className="sidebar-label">
+          <p>Lists</p>
+        </div>
+        <NavLink to='' className=''>
+          Placeholder
+        </NavLink>
+      </div>
+      <div className="sidebar-section">
+        <div className="sidebar-label">
+          <p>Tags</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

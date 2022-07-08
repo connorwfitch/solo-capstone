@@ -1,6 +1,5 @@
 // External modules
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import AppNav from "./AppNav";
 import Sidebar from "./Sidebar";

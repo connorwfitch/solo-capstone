@@ -19,7 +19,7 @@ function AppNav({ showSidebar, setShowSidebar }) {
         <i className="fa-solid fa-user">
         </i>
       </button>
-      <ProfileMenu showProfileMenu={showProfileMenu}/>
+      <ProfileMenu setShowProfileMenu={setShowProfileMenu} showProfileMenu={showProfileMenu}/>
     </nav>
   )
 }
