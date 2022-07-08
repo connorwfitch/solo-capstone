@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 // Internal modules
 import './App.css';
 import AppNav from "./AppNav";
-import ListDetail from "./ListDetail";
+import ListDetail from "./Lists/ListDetail";
 import Sidebar from "./Sidebar";
 
 function PrimaryApp() {

@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 // Internal modules
 import './Sidebar.css'
 import { getLists } from "../../../store/list";
+import AddListModal from "../Lists/AddListModal";
 
 function Sidebar({ showSidebar }) {
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session.user);
   const lists = useSelector(state => state.lists);
 
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function Sidebar({ showSidebar }) {
       <div className="sidebar-section">
         <div className="sidebar-label">
           <p>Lists</p>
+          <AddListModal />
         </div>
         {Object.values(lists).map((list) => {
           if (list.title === "Inbox") return null;
