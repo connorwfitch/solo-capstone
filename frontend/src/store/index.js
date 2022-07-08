@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 
 // Internal Modules
 import sessionReducer from './session';
+import listsReducer from './list';
 
 // Root reducer
 const rootReducer = combineReducers({
   session: sessionReducer,
+  lists: listsReducer
 });
 
 let enhancer;
