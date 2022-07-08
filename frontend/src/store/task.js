@@ -124,17 +124,20 @@ const initialState = {};
 
 // reducer
 const tasksReducer = (state = initialState, action) => {
-  let newState = { ...state };
+  let newState;
   switch (action.type) {
     case LOAD_ALL:
+      newState = {};
       action.tasks.forEach(task => {
         newState[task.id] = task;
       });
       return newState;
     case ADD_ONE:
+      newState = { ...state };
       newState[action.task.id] = action.task;
       return newState;
     case DELETE_ONE:
+      newState = { ...state };
       delete newState[action.taskId];
       return newState;
     default:
