@@ -31,8 +31,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 // GET /api/tags/:tagId/tasks (get all incomplete tasks for a tag)
-// WARNING: removed requireAuth for testing
-router.get('/:tagId/tasks', asyncHandler(async (req, res) => {
+router.get('/:tagId/tasks', requireAuth, asyncHandler(async (req, res) => {
   const tagId = parseInt(req.params.tagId, 10);
 
   const tag = await Tag.findByPk(tagId, {
