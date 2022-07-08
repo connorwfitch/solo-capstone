@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { List, Sequelize: { Op } } = require('../../db/models');
+const { List, Task, Sequelize: { Op } } = require('../../db/models');
 // const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -27,6 +27,21 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 
   return res.json({
     list
+  });
+}));
+
+// GET /api/lists/:listId/tasks (get all incomplete tasks for a list)
+router.get('/:listId/tasks', requireAuth, asyncHandler(async (req, res) => {
+  const listId = parseInt(req.params.listId, 10);
+  const tasks = await Task.findAll({
+    where: {
+      listId,
+      completed: false
+    }
+  });
+
+  return res.json({
+    tasks
   });
 }));
 
