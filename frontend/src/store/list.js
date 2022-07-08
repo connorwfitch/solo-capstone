@@ -82,17 +82,20 @@ const initialState = {};
 
 // reducer
 const listsReducer = (state = initialState, action) => {
-  let newState = { ...state };
+  let newState;
   switch (action.type) {
     case LOAD_ALL:
+      newState = {};
       action.lists.forEach(list => {
         newState[list.id] = list;
       });
       return newState;
     case ADD_ONE:
+      newState = { ...state };
       newState[action.list.id] = action.list;
       return newState;
     case DELETE_ONE:
+      newState = { ...state };
       delete newState[action.listId];
       return newState;
     default:

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
-import { createList } from "../../../store/list";
-import ColorSelector from "../../Misc/ColorSelector";
+import { createList } from "../../../../store/list";
+import ColorSelector from "../../../Misc/ColorSelector";
 
 function AddListForm({ setShowModal }) {
   const user = useSelector(state => state.session.user);

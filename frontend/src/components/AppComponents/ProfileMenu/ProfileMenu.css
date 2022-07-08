@@ -8,6 +8,7 @@
   min-width: 250px;
   box-sizing: border-box;
   padding: 12px;
+  z-index: 1;
 }
 
 .profile-menu-container {
@@ -44,9 +45,14 @@
 
 .profile-menu-stack {
   font-size: 14px;
+  width: 140px;
 }
 
 .profile-menu-stack > p {
   margin: 0px;
   padding: 0px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

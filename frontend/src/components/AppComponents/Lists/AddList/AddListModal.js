@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // Internal modules
-import { Modal } from '../../../context/Modal';
+import { Modal } from '../../../../context/Modal';
 import AddListForm from './AddListForm';
 
 function AddListModal() {
@@ -10,7 +10,7 @@ function AddListModal() {
 
   return (
     <>
-      <button className='' onClick={() => setShowModal(true)}>
+      <button className='sidebar-btn' onClick={() => setShowModal(true)}>
         <i className="fa-solid fa-plus"></i>
       </button>
       {showModal && (
