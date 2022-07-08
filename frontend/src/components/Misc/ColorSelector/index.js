@@ -1,5 +1,5 @@
 // External modules
-import Select, { StylesConfig } from 'react-select';
+import Select from 'react-select';
 
 function ColorSelector({ defaultVal, setColor }) {
   const options = [

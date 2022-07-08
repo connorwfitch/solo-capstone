@@ -5,6 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 
 // Internal modules
 import * as sessionActions from "../../store/session";
+import ColorSelector from "../Misc/ColorSelector";
 import SplashNav from "../Splash/SplashNav";
 
 function SignupPage() {
@@ -15,13 +16,14 @@ function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [color, setColor] = useState("#E44332");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ email, username, password, color }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -81,6 +83,14 @@ function SignupPage() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+            />
+          </label>
+          <label>
+            Color
+            <ColorSelector
+              required
+              defaultVal={color}
+              setColor={setColor}
             />
           </label>
           <button type="submit" className="btn-large btn-red">Sign Up</button>

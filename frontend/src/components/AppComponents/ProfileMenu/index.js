@@ -27,7 +27,7 @@ function ProfileMenu({ showProfileMenu, setShowProfileMenu }) {
         <div className="profile-menu-user">
           <div className="profile-icon" style={profileStyle}>
             <p>
-              {user.username[0]}
+              {user.username[0].toUpperCase()}
             </p>
           </div>
           <div className="profile-menu-stack light">
