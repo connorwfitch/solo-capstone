@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Tasks', [
       {
         title: 'Walk the dog',
-        listId:1,
+        listId: 1,
         userId: 1
       },
       {
