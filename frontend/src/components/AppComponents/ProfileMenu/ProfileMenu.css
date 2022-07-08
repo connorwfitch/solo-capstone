@@ -44,9 +44,14 @@
 
 .profile-menu-stack {
   font-size: 14px;
+  width: 140px;
 }
 
 .profile-menu-stack > p {
   margin: 0px;
   padding: 0px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
