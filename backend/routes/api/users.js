@@ -2,10 +2,11 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
+const moment = require('moment');
 
 // Internal modules
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Story } = require('../../db/models');
+const { User, Task, Sequelize: { Op } } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -71,6 +72,72 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
 
   return res.json({
     user
+  });
+}));
+
+// GET /api/users/:userId/tasks (get all incomplete tasks for a user)
+router.get('/:userId/tasks', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const tasks = await Task.findAll({
+    where: {
+      userId,
+      completed: false
+    }
+  });
+
+  return res.json({
+    tasks
+  });
+}));
+
+// GET /api/users/:userId/tasks/completed (get all completed tasks for a user)
+router.get('/:userId/tasks/completed', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const tasks = await Task.findAll({
+    where: {
+      userId,
+      completed: true
+    }
+  });
+
+  return res.json({
+    tasks
+  });
+}));
+
+// GET /api/users/:userId/tasks/today (get all incomplete tasks for a user with a due date of today)
+router.get('/:userId/tasks/today', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const EOD = moment().format('YYYY-MM-DD 23:59');
+  const tasks = await Task.findAll({
+    where: {
+      userId,
+      completed: false,
+      dueAt: {
+        [Op.ne]: null,
+        [Op.lte]: EOD
+      }
+    }
+  });
+
+  return res.json({
+    tasks
+  });
+}));
+
+// DELETE /api/users/:userId/tasks/completed (get all completed tasks for a user)
+router.delete('/:userId/tasks/completed', requireAuth, asyncHandler(async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+
+  Task.destroy({
+    where: {
+      userId,
+      completed: true
+    }
+  });
+
+  res.json({
+    message: 'Success'
   });
 }));
 
