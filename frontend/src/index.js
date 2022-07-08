@@ -9,6 +9,7 @@ import './index.css';
 import './css/button.css';
 import './css/form.css';
 import './css/auth.css';
+import './css/modalForm.css';
 import App from './App';
 import { ModalProvider } from "./context/Modal"
 import configureStore from './store';

@@ -4,10 +4,14 @@ import thunk from 'redux-thunk';
 
 // Internal Modules
 import sessionReducer from './session';
+import listsReducer from './list';
+import tasksReducer from './task';
 
 // Root reducer
 const rootReducer = combineReducers({
   session: sessionReducer,
+  lists: listsReducer,
+  tasks: tasksReducer,
 });
 
 let enhancer;

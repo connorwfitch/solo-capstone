@@ -48,11 +48,11 @@ router.get('/:listId/tasks', requireAuth, asyncHandler(async (req, res) => {
 // PATCH /api/lists/:listId (update a list)
 router.patch('/:listId', requireAuth, asyncHandler(async (req, res) => {
   const listId = parseInt(req.params.listId, 10);
-  const { title, color, userId } = req.body;
+  const { title, color } = req.body;
 
   const list = await List.findByPk(listId);
 
-  await list.update({ title, color, userId })
+  await list.update({ title, color })
 
   return res.json({
     list
