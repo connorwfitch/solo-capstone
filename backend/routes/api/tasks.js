@@ -6,8 +6,8 @@ const asyncHandler = require('express-async-handler');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { User, List, Task, Tag, Sequelize: { Op } } = require('../../db/models');
-const { handleValidationErrors } = require('../../utils/validation');
+const { Task, Sequelize: { Op } } = require('../../db/models');
+// const { handleValidationErrors } = require('../../utils/validation');
 
 
 const router = express.Router();
