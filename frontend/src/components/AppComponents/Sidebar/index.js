@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import './Sidebar.css'
 import { getLists } from "../../../store/list";
 import AddListModal from "../Lists/AddListModal";
+import SidebarLink from "./SidebarLink";
 
 function Sidebar({ showSidebar }) {
   const user = useSelector(state => state.session.user);
@@ -56,20 +57,7 @@ function Sidebar({ showSidebar }) {
         {Object.values(lists).map((list) => {
           if (list.title === "Inbox") return null;
           return (
-            <NavLink className='sidebar-nl' activeClassName='sidebar-nl-active' 
-              to={`/app/lists/${list.id}`} 
-              key={`list-${list.id}`}>
-              <i className="fa-solid fa-circle" style={{
-                color:list.color,
-                fontSize:'10px'
-              }}></i>
-              <div className="ellipses">
-                {list.title}
-              </div>
-              <button className="sidebar-details">
-                <i className="fa-solid fa-ellipsis"></i>
-              </button>
-            </NavLink>
+            <SidebarLink key={`list-${list.id}`} list={list}/>
           )
         })}
       </div>

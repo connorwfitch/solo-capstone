@@ -10,6 +10,7 @@ import Sidebar from "./Sidebar";
 
 function PrimaryApp() {
   const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <div id="app-container">
       <AppNav showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
