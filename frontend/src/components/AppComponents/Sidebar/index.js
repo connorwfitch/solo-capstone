@@ -1,12 +1,12 @@
 // External modules
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
 import './Sidebar.css'
 import { getLists } from "../../../store/list";
-import AddListModal from "../Lists/AddListModal";
+import AddListModal from "../Lists/AddList/AddListModal";
 import SidebarLink from "./SidebarLink";
 
 function Sidebar({ showSidebar }) {
@@ -14,6 +14,8 @@ function Sidebar({ showSidebar }) {
   const lists = useSelector(state => state.lists);
 
   const dispatch = useDispatch();
+
+  const [showMenu, setShowMenu] = useState('');
 
   useEffect(() => {
     dispatch(getLists(user.id));
@@ -57,7 +59,10 @@ function Sidebar({ showSidebar }) {
         {Object.values(lists).map((list) => {
           if (list.title === "Inbox") return null;
           return (
-            <SidebarLink key={`list-${list.id}`} list={list}/>
+            <SidebarLink key={`list-${list.id}`} list={list}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+            />
           )
         })}
       </div>

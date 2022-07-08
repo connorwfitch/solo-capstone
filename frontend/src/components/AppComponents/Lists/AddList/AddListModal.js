@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // Internal modules
-import { Modal } from '../../../context/Modal';
+import { Modal } from '../../../../context/Modal';
 import AddListForm from './AddListForm';
 
 function AddListModal() {

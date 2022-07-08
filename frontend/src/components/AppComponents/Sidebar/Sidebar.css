@@ -81,3 +81,8 @@
   color: black;
   background-color: #DDDDDD;
 }
+
+.sidebar-details-menu {
+  display: flex;
+  align-items: center;
+}
