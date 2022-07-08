@@ -2,6 +2,82 @@
   width: 300px;
   min-height: 100%;
   box-sizing: border-box;
-  padding-left: 40px;
+  padding: 10px 4px 32px 32px;
   background-color: #fafafa;
+  align-self: stretch;
+  border-right: 2px solid #EEEEEE;
+}
+
+.sidebar p {
+  margin: 0;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.sidebar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-nl {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: lighter;
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 6px 2px 8px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  position: relative;
+}
+
+.ellipses {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nl:hover {
+  background-color: #EEEEEE;
+}
+
+.sidebar-nl-active {
+  background-color: #EEEEEE;
+}
+
+.sidebar-btn {
+  background-color: #fafafa;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar-btn:hover {
+  background-color: #EEEEEE;
+}
+
+.sidebar-details {
+  border: none;
+  border-radius: 4px;
+  color: #BBBBBB;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.sidebar-details:hover {
+  color: black;
+  background-color: #DDDDDD;
 }

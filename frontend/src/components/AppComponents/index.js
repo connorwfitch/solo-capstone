@@ -13,17 +13,15 @@ function PrimaryApp() {
   return (
     <div id="app-container">
       <AppNav showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
-      <div className="app-main">
-        <Sidebar showSidebar={showSidebar} />
-        <Switch>
-          <Route exact path='/app'>
-            <h1>Root of App</h1>
-          </Route>
-          <Route exact path='/app/lists/:listId'>
-            <ListDetail />
-          </Route>
-        </Switch>
-      </div>
+      <Sidebar showSidebar={showSidebar} />
+      <Switch>
+        <Route exact path='/app'>
+          <h1>Root of App</h1>
+        </Route>
+        <Route exact path='/app/lists/:listId'>
+          <ListDetail />
+        </Route>
+      </Switch>
     </div>
   )
 }

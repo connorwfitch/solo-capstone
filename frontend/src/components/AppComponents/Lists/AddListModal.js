@@ -10,7 +10,7 @@ function AddListModal() {
 
   return (
     <>
-      <button className='' onClick={() => setShowModal(true)}>
+      <button className='sidebar-btn' onClick={() => setShowModal(true)}>
         <i className="fa-solid fa-plus"></i>
       </button>
       {showModal && (
