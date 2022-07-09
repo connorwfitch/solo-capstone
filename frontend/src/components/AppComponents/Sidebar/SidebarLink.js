@@ -2,6 +2,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// Internal modules
+import EditListModal from "../Lists/EditList/EditListModal";
+
 function SidebarLink({ list, showMenu, setShowMenu }) {
   let buttons;
 
@@ -11,9 +14,7 @@ function SidebarLink({ list, showMenu, setShowMenu }) {
         <button className="sidebar-details" onClick={() => null} >
           <i className="fa-solid fa-trash"></i>
         </button>
-        <button className="sidebar-details" onClick={() => null} >
-          <i className="fa-solid fa-gear"></i>
-        </button>
+        <EditListModal list={list}/>
         <button className="sidebar-details" onClick={() => setShowMenu('')}>
           <i className="fa-solid fa-ellipsis"></i>
         </button>

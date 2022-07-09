@@ -48,8 +48,8 @@ export const createList = (list) => async dispatch => {
   }
 }
 
-export const editList = (listId, list) => async dispatch => {
-  const { title, color } = list;
+export const editList = (list) => async dispatch => {
+  const { listId, title, color } = list;
   const response = await csrfFetch(`/api/lists/${listId}`, {
     method: 'PATCH',
     body: JSON.stringify({

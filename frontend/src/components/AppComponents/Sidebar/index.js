@@ -30,24 +30,40 @@ function Sidebar({ showSidebar }) {
           activeClassName='sidebar-nl-active'
           exact to='/app'
         >
+          <i className="fa-solid fa-house" style={{
+            color: '#E44332',
+            fontSize: '13px'
+          }}></i>
           All Tasks
         </NavLink>
         <NavLink className='sidebar-nl' 
           activeClassName='sidebar-nl-active'
           to={`/app/lists/${inboxId}`}
         >
+          <i className="fa-solid fa-inbox" style={{
+            color: '#467BB0',
+            fontSize: '14px'
+          }}></i>
           Inbox
         </NavLink>
         <NavLink className='sidebar-nl' 
           activeClassName='sidebar-nl-active'
           to='/app/today'
         >
+          <i className="fa-regular fa-calendar" style={{
+            color: '#7B52A9',
+            fontSize: '15px'
+          }}></i>
           Today
         </NavLink>
         <NavLink className='sidebar-nl' 
           activeClassName='sidebar-nl-active'
           to='/app/completed'
         >
+          <i className="fa-solid fa-circle-check" style={{
+            color: '#2FB86F',
+            fontSize: '14px'
+          }}></i>
           Completed
         </NavLink>
       </div>
