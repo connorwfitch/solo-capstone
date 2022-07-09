@@ -29,6 +29,8 @@ export const getAllTasks = (userId) => async dispatch => {
     const output = await response.json();
     dispatch(loadAll(output.tasks));
   }
+
+  return response;
 }
 
 export const getCompletedTasks = (userId) => async dispatch => {
@@ -38,6 +40,8 @@ export const getCompletedTasks = (userId) => async dispatch => {
     const output = await response.json();
     dispatch(loadAll(output.tasks));
   }
+
+  return response;
 }
 
 export const getTodayTasks = (userId) => async dispatch => {
@@ -47,6 +51,8 @@ export const getTodayTasks = (userId) => async dispatch => {
     const output = await response.json();
     dispatch(loadAll(output.tasks));
   }
+
+  return response;
 }
 
 export const getTasksByList = (listId) => async dispatch => {
@@ -56,6 +62,8 @@ export const getTasksByList = (listId) => async dispatch => {
     const output = await response.json();
     dispatch(loadAll(output.tasks));
   }
+
+  return response;
 }
 
 export const getTasksByTag = (tagId) => async dispatch => {
@@ -65,6 +73,8 @@ export const getTasksByTag = (tagId) => async dispatch => {
     const output = await response.json();
     dispatch(loadAll(output.tasks));
   }
+
+  return response;
 }
 
 // TODO: add the "here" boolean
@@ -85,6 +95,8 @@ export const createTask = (task) => async dispatch => {
     const output = await response.json();
     dispatch(addOne(output.task));
   }
+
+  return response;
 }
 
 // TODO: add the "here" boolean
@@ -104,6 +116,8 @@ export const editTask = (taskId, task) => async dispatch => {
     const output = await response.json();
     dispatch(addOne(output.task));
   }
+
+  return response;
 }
 
 export const deleteTask = (taskId) => async dispatch => {
@@ -115,6 +129,8 @@ export const deleteTask = (taskId) => async dispatch => {
     const output = await response.json();
     dispatch(deleteOne(output.taskId));
   }
+
+  return response;
 }
 
 
