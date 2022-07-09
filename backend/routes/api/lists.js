@@ -1,13 +1,12 @@
 // External modules
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-// const { check } = require('express-validator');
-// const moment = require('moment');
+const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
 const { List, Task, Sequelize: { Op } } = require('../../db/models');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors } = require('../../utils/validation');
 
 
 const router = express.Router();
@@ -16,11 +15,19 @@ const router = express.Router();
 -------------------VALIDATORS-------------------
 */
 
+const validateList = [
+  check('title')
+    .exists({ checkFalsy: true})
+    .isLength({ max: 50 })
+    .withMessage('Title may be at most 50 characters long.'),
+  handleValidationErrors
+];
+
 /*
 -------------------ROUTES-------------------
 */
 // POST /api/lists (create a list)
-router.post('/', requireAuth, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateList, asyncHandler(async (req, res) => {
   const { title, color, userId } = req.body;
   
   const list = await List.create({ title, color, userId });
@@ -46,7 +53,7 @@ router.get('/:listId/tasks', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 // PATCH /api/lists/:listId (update a list)
-router.patch('/:listId', requireAuth, asyncHandler(async (req, res) => {
+router.patch('/:listId', requireAuth, validateList, asyncHandler(async (req, res) => {
   const listId = parseInt(req.params.listId, 10);
   const { title, color } = req.body;
 

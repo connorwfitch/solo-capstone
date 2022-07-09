@@ -3,23 +3,23 @@ import React, { useState } from 'react';
 
 // Internal modules
 import { Modal } from '../../../../context/Modal';
-import EditListForm from './EditListForm';
+import DeleteListForm from './DeleteListForm';
 
-function EditListModal({ list }) {
+function DeleteListModal({ list }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <button className="sidebar-details" onClick={() => setShowModal(true)} >
-        <i className="fa-solid fa-gear"></i>
+        <i className="fa-solid fa-trash"></i>
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditListForm setShowModal={setShowModal} list={list} />
+          <DeleteListForm setShowModal={setShowModal} list={list} />
         </Modal>
       )}
     </>
   );
 }
 
-export default EditListModal;
+export default DeleteListModal;

@@ -1,5 +1,5 @@
 // External modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
@@ -18,14 +18,24 @@ function AddListForm({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
     return dispatch(createList({ title, color, userId: user.id }))
-      .then(setShowModal(false))
       .catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         }
+      )
+      .then(
+        (out) => {
+          if (out === 'Success') setShowModal(false)
+        }
       );
   };
+
+  useEffect(() => {
+    const newErrors = [];
+    if (title.length > 50) newErrors.push('Title may be at most 50 characters long.')
+    setErrors(newErrors);
+  }, [title]);
   
   return (
     <form className='modal-form' onSubmit={handleSubmit}>
@@ -53,7 +63,13 @@ function AddListForm({ setShowModal }) {
           setColor={setColor}
         />
       </label>
-      <button type="submit" className="btn-large btn-red">Add</button>
+      <button 
+        type="submit" 
+        className="btn-large btn-red"
+        disabled={errors.length}
+      >
+        Add
+      </button>
       <button 
         className="btn-large btn-white"
         type='button'

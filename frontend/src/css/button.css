@@ -60,6 +60,10 @@ button {
   background-color: #e44432cd;
 }
 
+.btn-red:disabled {
+  background-color: #E37267;
+}
+
 .btn {
   text-decoration: none;
   border: 0px solid transparent;

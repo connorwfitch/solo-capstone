@@ -10,8 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     Tag.belongsToMany(models.Task, {
       through: 'TaskTag',
       foreignKey: 'tagId',
-      otherKey: 'taskId'
+      otherKey: 'taskId',
+      // onDelete: 'CASCADE',
+      // hooks: true
     });
+    Tag.hasMany(models.TaskTag, { foreignKey: 'tagId', onDelete: 'CASCADE', hooks: true });
   };
   return Tag;
 };
