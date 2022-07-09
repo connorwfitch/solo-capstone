@@ -18,11 +18,15 @@ function AddListForm({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
     return dispatch(createList({ title, color, userId: user.id }))
-      .then(setShowModal(false))
       .catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
+        }
+      )
+      .then(
+        (out) => {
+          if (out === 'Success') setShowModal(false)
         }
       );
   };

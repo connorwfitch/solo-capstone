@@ -1,33 +1,46 @@
 // External modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 // Internal modules
 import { editList } from "../../../../store/list";
 import ColorSelector from "../../../Misc/ColorSelector";
 
-function AddListForm({ setShowModal, list }) {
+function EditListForm({ setShowModal, list }) {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(list.title);
   const [color, setColor] = useState(list.color);
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+
+  const handleEdit = (e) => {
+    console.log('SUBMITTED');
     e.preventDefault();
     setErrors([]);
     return dispatch(editList({ listId: list.id, title, color }))
-      .then(setShowModal(false))
       .catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         }
+      )
+      .then(
+        (out) => {
+          if (out === 'Success') setShowModal(false)
+        }
       );
   };
 
+  useEffect(() => {
+    const newErrors = [];
+    if(!title.length) newErrors.push('Must include a title.')
+    setErrors(newErrors);
+  }, [title]);
+
+
   return (
-    <form className='modal-form' >
+    <form className='modal-form'>
       <h2>
         Edit list
       </h2>
@@ -53,11 +66,12 @@ function AddListForm({ setShowModal, list }) {
         />
       </label>
       <button 
-        type="button"
         className="btn-large btn-red"
-        onClick={(e) => handleSubmit(e)}
+        type="submit"
+        onClick={handleEdit}
+        disabled={errors.length}
       >
-          Edit
+        Submit
       </button>
       <button
         className="btn-large btn-white"
@@ -73,4 +87,4 @@ function AddListForm({ setShowModal, list }) {
   );
 };
 
-export default AddListForm;
+export default EditListForm;

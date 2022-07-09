@@ -29,6 +29,7 @@ export const getLists = (userId) => async dispatch => {
     const output = await response.json();
     dispatch(loadAll(output.lists));
   }
+  return response;
 }
 
 export const createList = (list) => async dispatch => {
@@ -45,7 +46,9 @@ export const createList = (list) => async dispatch => {
   if (response.ok) {
     const output = await response.json();
     dispatch(addOne(output.list));
+    return 'Success';
   }
+  return response;
 }
 
 export const editList = (list) => async dispatch => {
@@ -61,7 +64,9 @@ export const editList = (list) => async dispatch => {
   if (response.ok) {
     const output = await response.json();
     dispatch(addOne(output.list));
+    return 'Success';
   }
+  return response;
 }
 
 export const deleteList = (listId) => async dispatch => {
@@ -73,6 +78,7 @@ export const deleteList = (listId) => async dispatch => {
     const output = await response.json();
     dispatch(deleteOne(output.listId));
   }
+  return response;
 }
 
 
