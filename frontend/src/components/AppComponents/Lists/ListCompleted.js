@@ -20,18 +20,20 @@ function ListCompleted() {
   }, [dispatch, userId])
 
   return tasks && user && (
-    <>
-      <h1>Completed</h1>
-      <div>
-        {Object.values(tasks).map((task) => {
-          return (
-            <div key={`task-${task.id}`}>
-              {task.title}
-            </div>
-          )
-        })}
+    <div id='content-container'>
+      <div className='tasks-main'>
+        <h1>Completed</h1>
+        <div>
+          {Object.values(tasks).map((task) => {
+            return (
+              <div key={`task-${task.id}`}>
+                {task.title}
+              </div>
+            )
+          })}
+        </div>
       </div>
-    </>
+    </div>
   )
 
 }

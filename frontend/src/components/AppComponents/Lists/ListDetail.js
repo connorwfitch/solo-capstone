@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 
 // Internal modules
 import { getTasksByList } from '../../../store/task';
+import NotFoundApp from '../NotFoundApp';
+import '../Tasks/Tasks.css';
 
 
 function ListDetail() {
@@ -21,19 +23,27 @@ function ListDetail() {
     dispatch(getTasksByList(listId));
   }, [dispatch, listId])
 
+  if (!Object.keys(lists).includes(listId)) {
+    return (
+      <NotFoundApp />
+    )
+  }
+
   return tasks && list && (
-    <>
-      <h1>{list.title}</h1>
-      <div>
-        {Object.values(tasks).map((task) => {
-          return (
-            <div key={`task-${task.id}`}>
-              {task.title}
-            </div>
+    <div id='content-container'>
+      <div className='tasks-main'>
+        <h1>{list.title}</h1>
+        <div>
+          {Object.values(tasks).map((task) => {
+            return (
+              <div key={`task-${task.id}`}>
+                {task.title}
+              </div>
             )
           })}
+        </div>
       </div>
-    </>
+    </div>
   )
 
 }

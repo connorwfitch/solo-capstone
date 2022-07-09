@@ -11,7 +11,13 @@ function AppNav({ showSidebar, setShowSidebar }) {
   return (
     <nav className="app-nav">
       <div className='app-nav-holder'>
-        <button className="btn app-nav-btn" onClick={() => setShowSidebar(!showSidebar)}>
+        <button className="btn app-nav-btn" 
+          onClick={() => {
+            const contentContainer = document.querySelector('#content-container');
+            contentContainer.classList.toggle('hide');
+            setShowSidebar(!showSidebar)}
+          }
+        >
           <i className="fa-solid fa-bars"></i>
         </button>
       </div>
