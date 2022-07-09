@@ -10,9 +10,9 @@ function TaskSingle({ task }) {
   const handleComplete = (e) => {
     e.preventDefault();
     if (task.completed) {
-      e.target.classList.remove('complete')
+      e.target.classList.remove('completed')
     } else {
-      e.target.classList.add('complete')
+      e.target.classList.add('completed')
     }
     return dispatch(editTask({ 
         taskId: task.id,
@@ -25,14 +25,18 @@ function TaskSingle({ task }) {
     )
   }
 
+  let extraClass = '';
+  if (task.completed) extraClass = 'completed';
+
   return (
     <div className='task-single'>
-      <button 
+      <button
         className="btn-check"
         onClick={handleComplete}
       >
-        <i className="fa-regular fa-circle-check"></i>
+        <i className={`fa-regular fa-circle-check ${extraClass}`}></i>
       </button>
+      
       {task.title} {task.completed && 'Done!'}
     </div>
   )
