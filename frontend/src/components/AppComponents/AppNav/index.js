@@ -14,7 +14,11 @@ function AppNav({ showSidebar, setShowSidebar }) {
         <button className="btn app-nav-btn" 
           onClick={() => {
             const contentContainer = document.querySelector('#content-container');
-            contentContainer.classList.toggle('hide');
+            if (showSidebar) {
+              contentContainer.classList.remove('hide');
+            } else {
+              contentContainer.classList.add('hide');
+            }
             setShowSidebar(!showSidebar)}
           }
         >

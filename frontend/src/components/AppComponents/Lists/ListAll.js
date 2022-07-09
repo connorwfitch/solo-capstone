@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Internal modules
 import { getAllTasks } from '../../../store/task';
+import TaskSingle from '../Tasks/TaskSingle';
 
 
 function ListAll() {
@@ -26,9 +27,10 @@ function ListAll() {
         <div>
           {Object.values(tasks).map((task) => {
             return (
-              <div key={`task-${task.id}`}>
-                {task.title}
-              </div>
+              <TaskSingle
+                key={`task-${task.id}`}
+                task={task}
+              />
             )
           })}
         </div>

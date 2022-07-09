@@ -34,6 +34,7 @@ function AddListForm({ setShowModal }) {
   useEffect(() => {
     const newErrors = [];
     if (title.length > 50) newErrors.push('Title may be at most 50 characters long.')
+    if (title === 'Inbox') newErrors.push('May not name list \'Inbox\'')
     setErrors(newErrors);
   }, [title]);
   

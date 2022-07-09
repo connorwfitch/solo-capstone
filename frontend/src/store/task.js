@@ -99,22 +99,22 @@ export const createTask = (task) => async dispatch => {
   return response;
 }
 
-// TODO: add the "here" boolean
-export const editTask = (taskId, task) => async dispatch => {
-  const { title, details, dueAt, listId } = task;
+export const editTask = (task, here) => async dispatch => {
+  const { taskId, title, details, dueAt, completed, listId } = task;
   const response = await csrfFetch(`/api/tasks/${taskId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       title,
       details,
       dueAt,
+      completed,
       listId,
     }),
   });
 
   if (response.ok) {
     const output = await response.json();
-    dispatch(addOne(output.task));
+    if (here) dispatch(addOne(output.task));
   }
 
   return response;

@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { getTasksByList } from '../../../store/task';
 import NotFoundApp from '../NotFoundApp';
 import '../Tasks/Tasks.css';
+import TaskSingle from '../Tasks/TaskSingle';
 
 
 function ListDetail() {
@@ -36,9 +37,10 @@ function ListDetail() {
         <div>
           {Object.values(tasks).map((task) => {
             return (
-              <div key={`task-${task.id}`}>
-                {task.title}
-              </div>
+              <TaskSingle 
+                key={`task-${task.id}`}
+                task={task} 
+              />
             )
           })}
         </div>

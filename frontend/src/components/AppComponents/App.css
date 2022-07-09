@@ -4,6 +4,7 @@
   display: flex;
   position: relative;
   padding-top: 48px;
+  box-sizing: border-box;
 }
 
 .app-not-found {
