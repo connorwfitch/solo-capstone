@@ -68,6 +68,12 @@ router.post('/', validateSignup, asyncHandler(async (req, res) => {
   const { email, password, username, color } = req.body;
   const user = await User.signup({ email, username, password, color });
 
+  const userInbox = await List.create({
+    title: 'Inbox',
+    color: '#467BB0',
+    userId: user.id
+  });
+
   await setTokenCookie(res, user);
 
   return res.json({

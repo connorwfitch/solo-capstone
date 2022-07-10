@@ -75,6 +75,10 @@
   padding: 4px 6px;
 }
 
+.task-add-btn i {
+  font-size: 12px;
+}
+
 .task-add-btn:hover {
   color: #E44332;
 }
