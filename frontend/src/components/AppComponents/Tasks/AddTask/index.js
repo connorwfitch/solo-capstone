@@ -5,13 +5,13 @@ import { useSelector, useDispatch } from "react-redux";
 // Internal modules
 import ListSelector from '../../../Misc/ListSelector';
 import DateSelector from '../../../Misc/DateSelector';
+import DateSelectorModal from '../../../Misc/DateSelector/DateSelectorModal';
 
 function AddTaskInline({ defaultList }) {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   
   const [showAddForm, setShowAddForm] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [dueAt, setDueAt] = useState(null);
@@ -39,15 +39,7 @@ function AddTaskInline({ defaultList }) {
           placeholder='Task details'
         />
         <ListSelector setListId={setListId} defaultVal={defaultList}/>
-        <button
-          type='button'
-          onClick={() => setShowCalendar(!showCalendar)}
-        >
-          <i className="fa-regular fa-calendar"></i>
-          {dueAt ? dueAt.toDateString() : 'Due date'}
-        </button>
-        {showCalendar &&
-        (<DateSelector dueAt={dueAt} setDueAt={setDueAt} />) }
+        <DateSelectorModal dueAt={dueAt} setDueAt={setDueAt}/>
         <button 
           className='btn btn-white'
           onClick={(e) => {

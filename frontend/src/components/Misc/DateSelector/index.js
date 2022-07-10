@@ -7,13 +7,15 @@ import './DateSelector.css';
 
 function DateSelector({ dueAt, setDueAt }) {
   return (
-    <Calendar 
-      onChange={setDueAt} 
-      value={dueAt} 
-      minDate={new Date()}
-      minDetail='year'
-      formatShortWeekday={(locale, date) => date.toString().slice(0,1)}
-    />
+    <div className='calendar-modal'>    
+      <Calendar 
+        onChange={setDueAt} 
+        value={dueAt} 
+        minDate={new Date()}
+        minDetail='year'
+        formatShortWeekday={(locale, date) => date.toString().slice(0,1)}
+      />
+    </div>
   )
 }
 
