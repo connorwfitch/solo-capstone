@@ -114,7 +114,12 @@ export const editTask = (task, here) => async dispatch => {
 
   if (response.ok) {
     const output = await response.json();
-    if (here) dispatch(addOne(output.task));
+    if (here) {
+      dispatch(addOne(output.task));
+    } else {
+      dispatch(deleteOne(output.task.id));
+    }
+
   }
 
   return response;

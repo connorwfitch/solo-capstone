@@ -21,7 +21,7 @@ function TaskSingle({ task }) {
         dueAt: task.dueAt,
         completed: !task.completed,
         listId: task.listId
-      }, true)
+      }, false)
     )
   }
 
