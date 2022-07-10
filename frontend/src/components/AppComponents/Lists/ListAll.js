@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // Internal modules
 import { getAllTasks } from '../../../store/task';
 import TaskSingle from '../Tasks/TaskSingle';
+import AddTaskInline from '../Tasks/AddTask';
 
 
 function ListAll({ showSidebar }) {
@@ -36,6 +37,7 @@ function ListAll({ showSidebar }) {
               />
             )
           })}
+          <AddTaskInline defaultList={'Inbox'}/>
         </div>
       </div>
     </div>

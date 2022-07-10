@@ -1,14 +1,24 @@
 // External modules
 import Select from 'react-select';
+import { useSelector } from 'react-redux';
 
-function ColorSelector({ defaultVal, setColor }) {
-  const options = [
-    { value: '#E44332', label: 'Red', color: '#E44332' },
-    { value: '#467BB0', label: 'Blue', color: '#467BB0' },
-    { value: '#EAC435', label: 'Yellow', color: '#EAC435' },
-    { value: '#2FB86F', label: 'Green', color: '#2FB86F' },
-    { value: '#7B52A9', label: 'Purple', color: '#7B52A9' },
-  ]
+function ListSelector({ defaultVal, setListId}) {
+  const lists = useSelector(state => state.lists);
+
+  const options = Object.values(lists).map((list) => {
+    const out = {
+      value: list.id,
+      label: list.title,
+      color: list.color
+    }
+    return out;
+  });
+
+  let finalDefaultVal = defaultVal;
+  if (defaultVal === 'Inbox') {
+    finalDefaultVal = Object.values(lists)
+      .filter((list) => list.title === 'Inbox')[0].id;
+  }
 
   const dot = (color = 'transparent') => ({
     alignItems: 'center',
@@ -36,11 +46,11 @@ function ColorSelector({ defaultVal, setColor }) {
   return (
     <Select
       options={options}
-      defaultValue={options.filter(ele => ele.value === defaultVal )[0]}
+      defaultValue={options.filter(ele => ele.value === finalDefaultVal)[0]}
       styles={colorStyles}
-      onChange={(e) => setColor(e.value)}
+      onChange={(e) => setListId(e.value)}
     />
   )
-};
+}
 
-export default ColorSelector;
+export default ListSelector;
