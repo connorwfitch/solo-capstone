@@ -10,6 +10,7 @@ import ListCompleted from "./Lists/ListCompleted";
 import ListDetail from "./Lists/ListDetail";
 import ListToday from "./Lists/ListToday";
 import Sidebar from "./Sidebar";
+import NotFoundApp from "./NotFoundApp";
 
 function PrimaryApp() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -20,16 +21,19 @@ function PrimaryApp() {
       <Sidebar showSidebar={showSidebar} />
       <Switch>
         <Route exact path='/app'>
-          <ListAll />
+          <ListAll showSidebar={showSidebar}/>
         </Route>
         <Route exact path='/app/today'>
-          <ListToday />
+          <ListToday showSidebar={showSidebar}/>
         </Route>
         <Route exact path='/app/completed'>
-          <ListCompleted />
+          <ListCompleted showSidebar={showSidebar}/>
         </Route>
         <Route exact path='/app/lists/:listId'>
-          <ListDetail />
+          <ListDetail showSidebar={showSidebar}/>
+        </Route>
+        <Route>
+          <NotFoundApp showSidebar={showSidebar}/>
         </Route>
       </Switch>
     </div>

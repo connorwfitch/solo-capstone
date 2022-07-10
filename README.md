@@ -25,6 +25,13 @@ Twodoist is a clone of the popular task-manager app Todoist. Twodoist is built u
 
 ### Pages
 
+#### Splash
+#### Log in
+#### Sign up
+#### App main
+#### Task Creation
+#### List creation
+
 ### Installation Instructions
 1. Clone the repository using `git clone git@github.com:connorwfitch/solo-capstone.git`
 2. Install frontend packages using `cd frontend` and `npm install`

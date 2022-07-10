@@ -18,7 +18,7 @@ function DeleteListForm({ setShowModal, list }) {
   return (
     <form className='modal-form'>
       <h2>
-        Delete list
+        Confirm delete
       </h2>
       <button
         className="btn-large btn-red"
