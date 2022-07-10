@@ -28,7 +28,11 @@
 }
 
 .task-single {
+  margin-top: 1px;
   border-bottom: 1px solid #EEEEEE;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .btn-check {
@@ -46,5 +50,31 @@
 }
 
 .btn-check > .completed {
+  color: #E44332;
+}
+
+.task-single-details p {
+  padding: 0;
+  margin: 0;
+}
+
+.task-title {
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.task-add-btn {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 4px 6px;
+}
+
+.task-add-btn:hover {
   color: #E44332;
 }
