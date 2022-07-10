@@ -7,7 +7,7 @@ import { getAllTasks } from '../../../store/task';
 import TaskSingle from '../Tasks/TaskSingle';
 
 
-function ListAll() {
+function ListAll({ showSidebar }) {
   const user = useSelector(state => state.session.user);
   const tasks = useSelector(state => state.tasks);
   // const lists = useSelector(state => state.lists);
@@ -20,8 +20,11 @@ function ListAll() {
     dispatch(getAllTasks(userId));
   }, [dispatch, userId])
 
+  let sizingClass = '';
+  if (showSidebar) sizingClass = 'hide';
+
   return tasks && user && (
-    <div id='content-container'>
+    <div id='content-container' className={sizingClass}>
       <div className='tasks-main'>
         <h1>All tasks</h1>
         <div>

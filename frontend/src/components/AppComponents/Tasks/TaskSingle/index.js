@@ -37,7 +37,7 @@ function TaskSingle({ task }) {
         <i className={`fa-regular fa-circle-check ${extraClass}`}></i>
       </button>
       
-      {task.title} {task.completed && 'Done!'}
+      {task.title}
     </div>
   )
 }

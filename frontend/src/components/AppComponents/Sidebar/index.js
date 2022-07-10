@@ -60,7 +60,7 @@ function Sidebar({ showSidebar }) {
           activeClassName='sidebar-nl-active'
           to='/app/completed'
         >
-          <i className="fa-solid fa-circle-check" style={{
+          <i className="fa-regular fa-circle-check" style={{
             color: '#2FB86F',
             fontSize: '14px'
           }}></i>

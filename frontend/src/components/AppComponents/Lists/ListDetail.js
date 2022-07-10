@@ -10,7 +10,7 @@ import '../Tasks/Tasks.css';
 import TaskSingle from '../Tasks/TaskSingle';
 
 
-function ListDetail() {
+function ListDetail({ showSidebar }) {
   // const user = useSelector(state => state.session.user);
   const tasks = useSelector(state => state.tasks);
   const lists = useSelector(state => state.lists);
@@ -30,8 +30,11 @@ function ListDetail() {
     )
   }
 
+  let sizingClass = '';
+  if (showSidebar) sizingClass = 'hide';
+
   return tasks && list && (
-    <div id='content-container'>
+    <div id='content-container' className={sizingClass}>
       <div className='tasks-main'>
         <h1>{list.title}</h1>
         <div>
