@@ -8,6 +8,7 @@ import { getTasksByList } from '../../../store/task';
 import NotFoundApp from '../NotFoundApp';
 import '../Tasks/Tasks.css';
 import TaskSingle from '../Tasks/TaskSingle';
+import AddTaskInline from '../Tasks/AddTask';
 
 
 function ListDetail({ showSidebar }) {
@@ -46,6 +47,7 @@ function ListDetail({ showSidebar }) {
               />
             )
           })}
+          <AddTaskInline defaultList={list.id} hereCondition={'list'} />
         </div>
       </div>
     </div>

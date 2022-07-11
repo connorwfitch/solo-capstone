@@ -29,6 +29,7 @@ function AddTaskInline({ defaultList, hereCondition }) {
   const [dueAt, setDueAt] = useState(null);
   const [listId, setListId] = useState(defaultListId);
   const [errors, setErrors] = useState([]);
+  const [here, setHere] = useState(hereCondition === 'always');
 
   useEffect(() => {
     if (defaultList === 'Inbox') {
@@ -36,6 +37,18 @@ function AddTaskInline({ defaultList, hereCondition }) {
         .filter((list) => list.title === 'Inbox')[0]?.id)
     }
   }, [defaultList, lists])
+
+  useEffect(() => {
+    if (hereCondition === 'today') {
+      setHere(dueAt && dueAt <= new Date()); 
+    }
+  }, [dueAt, hereCondition])
+
+  useEffect(() => {
+    if (hereCondition === 'list') {
+      setHere(listId === defaultList)
+    }
+  }, [listId, hereCondition, defaultList])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,11 +77,6 @@ function AddTaskInline({ defaultList, hereCondition }) {
     setDetails("");
     setDueAt(null);
     setListId(defaultListId);
-  }
-
-  let here;
-  if (hereCondition === 'always') {
-    here = true;
   }
 
   if (showAddForm) {
