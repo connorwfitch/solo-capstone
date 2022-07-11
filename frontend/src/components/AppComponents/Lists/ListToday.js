@@ -31,7 +31,7 @@ function ListToday({ showSidebar }) {
     <div id='content-container' className={sizingClass}>
       <div className='tasks-main'>
         <h1>Today</h1>
-        <div>
+        <div className='tasks-holder'>
           {Object.values(tasks).map((task) => {
             return (
               <TaskSingle

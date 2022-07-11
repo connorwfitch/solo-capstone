@@ -21,6 +21,11 @@
   flex-direction: column;
 }
 
+.tasks-holder {
+  box-sizing: border-box;
+  padding-bottom: 40px;
+}
+
 .tasks-empty-img {
   max-width: 400px;
   width: 100%;
@@ -53,9 +58,19 @@
   color: #E44332;
 }
 
+.task-single-details {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .task-single-details p {
   padding: 0;
   margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .task-title {
@@ -66,7 +81,8 @@
 .task-single-sub {
   font-size: 14px;
   font-weight: lighter;
-  color: #BBBBBB;
+  color: #999999;
+  overflow-wrap: break-word;
 }
 
 .task-add-btn {

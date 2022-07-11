@@ -31,7 +31,7 @@ function ListAll({ showSidebar }) {
     <div id='content-container' className={sizingClass}>
       <div className='tasks-main'>
         <h1>All tasks</h1>
-        <div>
+        <div className='tasks-holder'>
           {Object.values(tasks).map((task) => {
             return (
               <TaskSingle

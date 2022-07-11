@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 // Internal modules
 import { editTask } from "../../../../store/task";
+import dateUtil from "../../../Misc/DateUtil";
 
 function TaskSingle({ task }) {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function TaskSingle({ task }) {
   if (task.completed) extraClass = 'completed';
 
   let dateMessage = '';
-  if (task.dueAt) dateMessage = task.dueAt.toString();
+  if (task.dueAt) dateMessage = dateUtil(task.dueAt.toString());
 
   return (
     <div className='task-single'>

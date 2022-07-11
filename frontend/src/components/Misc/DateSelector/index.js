@@ -15,6 +15,15 @@ function DateSelector({ setShowModal, dueAt, setDueAt }) {
         minDetail='year'
         formatShortWeekday={(locale, date) => date.toString().slice(0,1)}
       />
+      <button className='btn-large btn-red'
+        style={{ width: '100%', margin: '8px 0px' }}
+        onClick={(e) => {
+          e.preventDefault();
+          setShowModal(false);
+        }}
+      >
+        Done
+      </button>
       <button 
         className='btn-large btn-white'
         style={{width: '100%'}}
