@@ -15,7 +15,7 @@ function AddTaskInline({ defaultList, hereCondition }) {
   let defaultListId = defaultList;
   if (lists && defaultList === 'Inbox') {
     defaultListId = Object.values(lists)
-      .filter((list) => list.title === 'Inbox')[0].id;
+      .filter((list) => list.title === 'Inbox')[0]?.id;
   }
 
   
