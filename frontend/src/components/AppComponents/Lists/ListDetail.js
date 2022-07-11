@@ -48,6 +48,8 @@ function ListDetail({ showSidebar }) {
               <TaskSingle 
                 key={`task-${task.id}`}
                 task={task} 
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
               />
             )
           })}

@@ -2,10 +2,10 @@
 import { useDispatch } from "react-redux";
 
 // Internal modules
-import { editTask } from "../../../../store/task";
+import { deleteTask, editTask } from "../../../../store/task";
 import dateUtil from "../../../Misc/DateUtil";
 
-function TaskSingle({ task }) {
+function TaskSingle({ task, showMenu, setShowMenu }) {
   const dispatch = useDispatch();
 
   const handleComplete = (e) => {
@@ -23,6 +23,32 @@ function TaskSingle({ task }) {
         completed: !task.completed,
         listId: task.listId
       }, false)
+    )
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    return dispatch(deleteTask(task.id))
+  }
+
+  let buttons;
+  if (task.id === showMenu) {
+    buttons = (
+      <div className="task-single-menu">
+        <button className="task-single-actions" onClick={handleDelete}>
+          <i className="fa-solid fa-trash"></i>
+        </button>
+        {/* edit component */}
+        <button className="task-single-actions" onClick={() => setShowMenu('')}>
+          <i className="fa-solid fa-ellipsis"></i>
+        </button>
+      </div>
+    )
+  } else {
+    buttons = (
+      <button className="task-single-actions" onClick={() => setShowMenu(task.id)}>
+        <i className="fa-solid fa-ellipsis"></i>
+      </button>
     )
   }
 
@@ -55,6 +81,7 @@ function TaskSingle({ task }) {
           </p>
         )}
       </div>
+      {buttons}
     </div>
   )
 }
