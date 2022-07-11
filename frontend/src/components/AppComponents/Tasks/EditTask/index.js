@@ -17,11 +17,11 @@ function EditTaskInline({ task, hereCondition, setShowEditor }) {
   }, [dispatch, user.id])
 
   const [title, setTitle] = useState(task.title);
-  const [details, setDetails] = useState(task.details);
-  const [dueAt, setDueAt] = useState(new Date(task.dueAt));
+  const [details, setDetails] = useState(task.details ? task.details : '');
+  const [dueAt, setDueAt] = useState(task.dueAt ? new Date(task.dueAt) : null);
   const [listId, setListId] = useState(task.listId);
   const [errors, setErrors] = useState([]);
-  const [here, setHere] = useState(1);
+  const [here, setHere] = useState(true);
 
 
   useEffect(() => {
