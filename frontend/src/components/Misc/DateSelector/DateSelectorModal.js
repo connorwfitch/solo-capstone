@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 // Internal modules
 import { Modal } from '../../../context/Modal';
 import DateSelector from '.';
+import dateUtil from '../DateUtil';
 
 
 function DateSelectorModal({ dueAt, setDueAt }) {
@@ -20,7 +21,7 @@ function DateSelectorModal({ dueAt, setDueAt }) {
         }}
       >
         <i className="fa-regular fa-calendar"></i>
-        {dueAt ? dueAt.toDateString() : 'Due date'}
+        {dueAt ? dueAt.toString() : 'Due date'}
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

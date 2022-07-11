@@ -39,6 +39,9 @@ function ListAll({ showSidebar }) {
                 task={task}
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
+                showEditor={showEditor}
+                setShowEditor={setShowEditor}
+                hereCondition={'always'}
               />
             )
           })}

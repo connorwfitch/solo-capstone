@@ -120,7 +120,7 @@ export const editTask = (task, here) => async dispatch => {
     } else {
       dispatch(deleteOne(output.task.id));
     }
-
+    return 'Success';
   }
 
   return response;
