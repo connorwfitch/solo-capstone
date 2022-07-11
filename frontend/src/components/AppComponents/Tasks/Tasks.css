@@ -73,6 +73,7 @@
   gap: 8px;
   font-size: 14px;
   padding: 4px 6px;
+  color: black;
 }
 
 .task-add-btn i {
@@ -81,4 +82,65 @@
 
 .task-add-btn:hover {
   color: #E44332;
+}
+
+.task-inline {
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  box-sizing: border-box;
+  margin-top: 4px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-inline-title {
+  border: none;
+}
+
+.task-inline-details {
+  border: none;
+  font-weight: lighter;
+  resize: none;
+  overflow: auto;
+}
+
+.task-inline-title:focus,
+.task-inline-details:focus {
+  outline: none;
+}
+
+.task-inline-list {
+  display: flex;
+  flex-direction: column;
+  font-weight: lighter;
+  font-size: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.date-selector-btn {
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.date-selector-btn:hover {
+  color: #E44332;
+}
+
+.date-selector-btn i {
+  font-size: 16px;
+  position: relative;
+  top: -1px;
 }

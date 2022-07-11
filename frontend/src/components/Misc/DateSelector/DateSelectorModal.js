@@ -12,7 +12,7 @@ function DateSelectorModal({ dueAt, setDueAt }) {
   return (
     <>
       <button 
-        className="" 
+        className="date-selector-btn" 
         type='button'
         onClick={(e) => {
           e.preventDefault();

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
 import ListSelector from '../../../Misc/ListSelector';
-import DateSelector from '../../../Misc/DateSelector';
 import DateSelectorModal from '../../../Misc/DateSelector/DateSelectorModal';
 
 function AddTaskInline({ defaultList }) {
@@ -27,33 +26,43 @@ function AddTaskInline({ defaultList }) {
           ))}
         </ul>}
         <input
+          className='task-inline-title'
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          placeholder='Task title'
+          placeholder='Title'
         />
         <textarea
+          className='task-inline-details'
           value={details}
           onChange={(e) => setDetails(e.target.value)}
-          placeholder='Task details'
+          placeholder='Details'
+          rows="3"
         />
-        <ListSelector setListId={setListId} defaultVal={defaultList}/>
+        <label className='task-inline-list'>
+          <ListSelector 
+            setListId={setListId} 
+            defaultVal={defaultList}
+          />
+        </label>
         <DateSelectorModal dueAt={dueAt} setDueAt={setDueAt}/>
-        <button 
-          className='btn btn-white'
-          onClick={(e) => {
-            e.preventDefault();
-            setShowAddForm(false);
-            setTitle("");
-            setDetails("");
-            setDueAt(null);
-            setListId(null);
-          }}
-          type='button'
-        >
-          Cancel
-        </button>
+        <div>
+          <button
+            className='btn btn-white'
+            onClick={(e) => {
+              e.preventDefault();
+              setShowAddForm(false);
+              setTitle("");
+              setDetails("");
+              setDueAt(null);
+              setListId(null);
+            }}
+            type='button'
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     );
   } else {
