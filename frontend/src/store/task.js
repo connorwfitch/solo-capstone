@@ -78,8 +78,9 @@ export const getTasksByTag = (tagId) => async dispatch => {
 }
 
 // TODO: add the "here" boolean
-export const createTask = (task) => async dispatch => {
+export const createTask = (task, here) => async dispatch => {
   const { title, details, dueAt, listId, userId } = task;
+  console.log('-----TASK-----', task);
   const response = await csrfFetch('/api/tasks', {
     method: 'POST',
     body: JSON.stringify({
@@ -93,7 +94,9 @@ export const createTask = (task) => async dispatch => {
 
   if (response.ok) {
     const output = await response.json();
-    dispatch(addOne(output.task));
+    if (here) {
+      dispatch(addOne(output.task));
+    }
   }
 
   return response;
