@@ -63,6 +63,12 @@
   font-weight: lighter;
 }
 
+.task-single-sub {
+  font-size: 14px;
+  font-weight: lighter;
+  color: #BBBBBB;
+}
+
 .task-add-btn {
   border: none;
   border-radius: 4px;

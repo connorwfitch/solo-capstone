@@ -28,6 +28,9 @@ function TaskSingle({ task }) {
   let extraClass = '';
   if (task.completed) extraClass = 'completed';
 
+  let dateMessage = '';
+  if (task.dueAt) dateMessage = task.dueAt.toString();
+
   return (
     <div className='task-single'>
       <button
@@ -40,6 +43,16 @@ function TaskSingle({ task }) {
         <p className="task-title">
           {task.title}
         </p>
+        {task.details && (
+          <p className="task-single-sub">
+            {task.details}
+          </p>
+        )}
+        { task.dueAt && (
+          <p className="task-single-sub">
+            {dateMessage}
+          </p>
+        )}
       </div>
     </div>
   )

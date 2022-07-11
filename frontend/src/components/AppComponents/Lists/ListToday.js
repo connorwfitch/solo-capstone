@@ -1,5 +1,5 @@
 // External modules
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Internal modules
@@ -12,6 +12,9 @@ function ListToday({ showSidebar }) {
   const user = useSelector(state => state.session.user);
   const tasks = useSelector(state => state.tasks);
   // const lists = useSelector(state => state.lists);
+
+  const [showMenu, setShowMenu] = useState('');
+  const [showEditor, setShowEditor] = useState('');
 
   const userId = user.id;
 
@@ -37,8 +40,18 @@ function ListToday({ showSidebar }) {
               />
             )
           })}
-          <AddTaskInline defaultList={'Inbox'} hereCondition={'today'} />
+          <AddTaskInline
+            defaultList={'Inbox'}
+            hereCondition={'today'}
+            showEditor={showEditor}
+            setShowEditor={setShowEditor}
+          />
         </div>
+        {Object.values(tasks).length === 0 && !showEditor && (
+          <>
+            <img src='/images/farmer.png' className='tasks-empty-img' alt='farmer' />
+          </>
+        )}
       </div>
     </div>
   )

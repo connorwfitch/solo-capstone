@@ -22,7 +22,6 @@ const router = express.Router();
 // POST /api/tasks (create a task)
 router.post('/', requireAuth, asyncHandler(async (req, res) => {
   const { title, details, dueAt, listId, userId } = req.body;
-  // QUESTION: Passing along optional values???
   const task = await Task.create({ title, details, dueAt, listId, userId });
 
   return res.json({
@@ -37,7 +36,6 @@ router.patch('/:taskId', requireAuth, asyncHandler(async (req, res) => {
 
   const task = await Task.findByPk(taskId);
   
-  // QUESTION: Passing along optional values???
   await task.update({ title, details, dueAt, completed, listId})
 
   return res.json({

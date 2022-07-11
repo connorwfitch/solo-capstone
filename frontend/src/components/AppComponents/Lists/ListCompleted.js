@@ -37,6 +37,11 @@ function ListCompleted({ showSidebar }) {
             )
           })}
         </div>
+        {Object.values(tasks).length === 0 && (
+          <>
+            <img src='/images/farmer.png' className='tasks-empty-img' alt='farmer' />
+          </>
+        )}
       </div>
     </div>
   )
