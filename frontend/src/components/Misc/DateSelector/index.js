@@ -1,5 +1,4 @@
 // External modules
-import { useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -7,10 +6,6 @@ import 'react-calendar/dist/Calendar.css';
 import './DateSelector.css';
 
 function DateSelector({ setShowModal, dueAt, setDueAt }) {
-
-  useEffect(() => {
-    console.log(1, dueAt);
-  }, [dueAt])
 
   return (
     <div className='calendar-modal'>    
