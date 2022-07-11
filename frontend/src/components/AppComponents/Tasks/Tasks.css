@@ -5,6 +5,9 @@
   flex-shrink: 1;
   padding: 10px;
   box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width:600px) {
@@ -23,7 +26,7 @@
 
 .tasks-holder {
   box-sizing: border-box;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
 }
 
 .tasks-empty-img {
@@ -125,7 +128,6 @@
   border: none;
   font-weight: lighter;
   resize: none;
-  overflow: auto;
 }
 
 .task-inline-title:focus,
