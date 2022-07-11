@@ -97,8 +97,8 @@ export const createTask = (task, here) => async dispatch => {
     if (here) {
       dispatch(addOne(output.task));
     }
+    return 'Success';
   }
-
   return response;
 }
 
