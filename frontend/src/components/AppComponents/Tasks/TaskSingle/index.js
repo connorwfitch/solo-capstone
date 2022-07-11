@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 // Internal modules
 import { deleteTask, editTask } from "../../../../store/task";
 import dateUtil from "../../../Misc/DateUtil";
+import EditTaskInline from "../EditTask";
 
-function TaskSingle({ task, showMenu, setShowMenu }) {
+function TaskSingle({ task, showMenu, setShowMenu, showEditor, setShowEditor, hereCondition }) {
   const dispatch = useDispatch();
 
   const handleComplete = (e) => {
@@ -38,7 +39,9 @@ function TaskSingle({ task, showMenu, setShowMenu }) {
         <button className="task-single-actions" onClick={handleDelete}>
           <i className="fa-solid fa-trash"></i>
         </button>
-        {/* edit button */}
+        <button className="task-single-actions" onClick={() => setShowEditor(task.id)}>
+          <i className="fa-solid fa-pen"></i>
+        </button>
         <button className="task-single-actions" onClick={() => setShowMenu('')}>
           <i className="fa-solid fa-ellipsis"></i>
         </button>
@@ -58,32 +61,42 @@ function TaskSingle({ task, showMenu, setShowMenu }) {
   let dateMessage = '';
   if (task.dueAt) dateMessage = dateUtil(task.dueAt.toString());
 
-  return (
-    <div className='task-single'>
-      <button
-        className="btn-check"
-        onClick={handleComplete}
-      >
-        <i className={`fa-regular fa-circle-check ${extraClass}`}></i>
-      </button>
-      <div className="task-single-details">
-        <p className="task-title">
-          {task.title}
-        </p>
-        {task.details && (
-          <p className="task-single-sub">
-            {task.details}
+  if (showEditor === task.id) {
+    return (
+      <EditTaskInline 
+        task={task}
+        hereCondition={hereCondition}
+        setShowEditor={setShowEditor}
+      />
+    )
+  } else {
+    return (
+      <div className='task-single'>
+        <button
+          className="btn-check"
+          onClick={handleComplete}
+        >
+          <i className={`fa-regular fa-circle-check ${extraClass}`}></i>
+        </button>
+        <div className="task-single-details">
+          <p className="task-title">
+            {task.title}
           </p>
-        )}
-        { task.dueAt && (
-          <p className="task-single-sub">
-            {dateMessage}
-          </p>
-        )}
+          {task.details && (
+            <p className="task-single-sub">
+              {task.details}
+            </p>
+          )}
+          {task.dueAt && (
+            <p className="task-single-sub">
+              {dateMessage}
+            </p>
+          )}
+        </div>
+        {buttons}
       </div>
-      {buttons}
-    </div>
-  )
+    )
+  }
 }
 
 export default TaskSingle;

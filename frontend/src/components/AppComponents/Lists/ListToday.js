@@ -39,6 +39,9 @@ function ListToday({ showSidebar }) {
                 task={task}
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
+                showEditor={showEditor}
+                setShowEditor={setShowEditor}
+                hereCondition={'today'}
               />
             )
           })}

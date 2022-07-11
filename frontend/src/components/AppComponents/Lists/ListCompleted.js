@@ -1,5 +1,5 @@
 // External modules
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Internal modules
@@ -11,6 +11,9 @@ function ListCompleted({ showSidebar }) {
   const user = useSelector(state => state.session.user);
   const tasks = useSelector(state => state.tasks);
   // const lists = useSelector(state => state.lists);
+
+  const [showMenu, setShowMenu] = useState('');
+  const [showEditor, setShowEditor] = useState('');
 
   const userId = user.id;
 
@@ -33,6 +36,11 @@ function ListCompleted({ showSidebar }) {
               <TaskSingle
                 key={`task-${task.id}`}
                 task={task}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                showEditor={showEditor}
+                setShowEditor={setShowEditor}
+                hereCondition={'always'}
               />
             )
           })}

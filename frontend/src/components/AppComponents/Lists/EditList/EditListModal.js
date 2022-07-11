@@ -11,7 +11,7 @@ function EditListModal({ list }) {
   return (
     <>
       <button className="sidebar-details" onClick={() => setShowModal(true)} >
-        <i className="fa-solid fa-gear"></i>
+        <i className="fa-solid fa-pen"></i>
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

@@ -1,16 +1,21 @@
 // External modules
 import { Link } from "react-router-dom";
 
+// Internal modules
+import SplashNav from "../../Splash/SplashNav";
+
 function NotFound() {
   return (
-    <div className="special-background" >
-      <div className="misc-container">
-        <h1 className="average">Not Found</h1>
+    <>
+      <SplashNav />
+      <div className="about-main">
+        <h1 className="">Not Found</h1>
         <Link to='/' className="link">
           Return to home page
         </Link>
+        <img src="/images/cards.png" className='about-img' alt='productive people' />
       </div>
-    </div>
+    </>
   )
 }
 
