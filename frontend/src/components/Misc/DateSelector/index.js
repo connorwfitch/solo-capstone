@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 // Internal modules
 import './DateSelector.css';
 
-function DateSelector({ dueAt, setDueAt }) {
+function DateSelector({ setShowModal, dueAt, setDueAt }) {
   return (
     <div className='calendar-modal'>    
       <Calendar 
@@ -15,6 +15,17 @@ function DateSelector({ dueAt, setDueAt }) {
         minDetail='year'
         formatShortWeekday={(locale, date) => date.toString().slice(0,1)}
       />
+      <button 
+        className='btn-large btn-white'
+        style={{width: '100%'}}
+        onClick={(e) => {
+          e.preventDefault();
+          setDueAt(null);
+          setShowModal(false);
+        }}
+      >
+        Cancel
+      </button>
     </div>
   )
 }

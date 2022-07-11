@@ -37,7 +37,7 @@ function ListAll({ showSidebar }) {
               />
             )
           })}
-          <AddTaskInline defaultList={'Inbox'}/>
+          <AddTaskInline defaultList={'Inbox'} hereCondition={'always'}/>
         </div>
       </div>
     </div>

@@ -1,59 +1,125 @@
 // External modules
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 // Internal modules
 import ListSelector from '../../../Misc/ListSelector';
-import DateSelector from '../../../Misc/DateSelector';
 import DateSelectorModal from '../../../Misc/DateSelector/DateSelectorModal';
+import { createTask } from '../../../../store/task';
+import { getLists } from '../../../../store/list';
 
-function AddTaskInline({ defaultList }) {
+function AddTaskInline({ defaultList, hereCondition }) {
   const user = useSelector(state => state.session.user);
+  const lists = useSelector(state => state.lists);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLists(user.id));
+  }, [dispatch, user.id])
   
+  let defaultListId = defaultList;
+  if (defaultList === 'Inbox') {
+    defaultListId = Object.values(lists)
+      .filter((list) => list.title === 'Inbox')[0]?.id;
+  }
+
   const [showAddForm, setShowAddForm] = useState(false);
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [dueAt, setDueAt] = useState(null);
-  const [listId, setListId] = useState(null);
+  const [listId, setListId] = useState(defaultListId);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (defaultList === 'Inbox') {
+      setListId(Object.values(lists)
+        .filter((list) => list.title === 'Inbox')[0]?.id)
+    }
+  }, [defaultList, lists])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(createTask(
+        { 
+          title, details, dueAt, listId, userId: user.id 
+        },
+        here
+      ))
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      ).then(
+        (out) => {
+          if (out === 'Success') resetForm();
+        }
+      )
+  };
+
+  const resetForm = () => {
+    setShowAddForm(false);
+    setTitle("");
+    setDetails("");
+    setDueAt(null);
+    setListId(defaultListId);
+  }
+
+  let here;
+  if (hereCondition === 'always') {
+    here = true;
+  }
 
   if (showAddForm) {
     return (
-      <form className='task-inline'>
+      <form className='task-inline' onSubmit={handleSubmit}>
         {errors.length > 0 && <ul className="errors">
           {errors.map((error, i) => (
             <li key={i}>{error}</li>
           ))}
         </ul>}
         <input
+          className='task-inline-title'
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          placeholder='Task title'
+          placeholder='Title'
         />
         <textarea
+          className='task-inline-details'
           value={details}
           onChange={(e) => setDetails(e.target.value)}
-          placeholder='Task details'
+          placeholder='Details'
+          rows="3"
         />
-        <ListSelector setListId={setListId} defaultVal={defaultList}/>
+        <label className='task-inline-list'>
+          <ListSelector 
+            setListId={setListId} 
+            defaultVal={listId}
+          />
+        </label>
         <DateSelectorModal dueAt={dueAt} setDueAt={setDueAt}/>
-        <button 
-          className='btn btn-white'
-          onClick={(e) => {
-            e.preventDefault();
-            setShowAddForm(false);
-            setTitle("");
-            setDetails("");
-            setDueAt(null);
-            setListId(null);
-          }}
-          type='button'
-        >
-          Cancel
-        </button>
+        <div className='task-inline-btn-holder'>
+          <button
+            className='btn btn-white'
+            onClick={(e) => {
+              e.preventDefault();
+              resetForm();
+            }}
+            type='button'
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn btn-red"
+            disabled={errors.length}
+          >
+            Add
+          </button>
+        </div>
       </form>
     );
   } else {

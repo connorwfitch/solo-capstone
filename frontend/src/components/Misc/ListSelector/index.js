@@ -14,12 +14,6 @@ function ListSelector({ defaultVal, setListId}) {
     return out;
   });
 
-  let finalDefaultVal = defaultVal;
-  if (defaultVal === 'Inbox') {
-    finalDefaultVal = Object.values(lists)
-      .filter((list) => list.title === 'Inbox')[0].id;
-  }
-
   const dot = (color = 'transparent') => ({
     alignItems: 'center',
     display: 'flex',
@@ -46,7 +40,7 @@ function ListSelector({ defaultVal, setListId}) {
   return (
     <Select
       options={options}
-      defaultValue={options.filter(ele => ele.value === finalDefaultVal)[0]}
+      defaultValue={options.filter(ele => ele.value === defaultVal)[0]}
       styles={colorStyles}
       onChange={(e) => setListId(e.value)}
     />
