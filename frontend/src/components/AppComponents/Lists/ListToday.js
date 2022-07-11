@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // Internal modules
 import { getTodayTasks } from '../../../store/task';
 import TaskSingle from '../Tasks/TaskSingle';
+import AddTaskInline from '../Tasks/AddTask';
 
 
 function ListToday({ showSidebar }) {
@@ -36,6 +37,7 @@ function ListToday({ showSidebar }) {
               />
             )
           })}
+          <AddTaskInline defaultList={'Inbox'} hereCondition={'today'} />
         </div>
       </div>
     </div>
