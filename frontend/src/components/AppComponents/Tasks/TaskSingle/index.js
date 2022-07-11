@@ -38,7 +38,7 @@ function TaskSingle({ task, showMenu, setShowMenu }) {
         <button className="task-single-actions" onClick={handleDelete}>
           <i className="fa-solid fa-trash"></i>
         </button>
-        {/* edit component */}
+        {/* edit button */}
         <button className="task-single-actions" onClick={() => setShowMenu('')}>
           <i className="fa-solid fa-ellipsis"></i>
         </button>

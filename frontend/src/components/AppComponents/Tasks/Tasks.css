@@ -174,3 +174,20 @@
   gap: 10px;
   justify-content: flex-end;
 }
+
+.task-single-menu {
+  display: flex;
+}
+
+.task-single-actions {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #DDDDDD;
+}
+
+.task-single-actions:hover {
+  color: black;
+  background-color: #f2f2f2;
+}
