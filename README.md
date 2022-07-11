@@ -58,5 +58,40 @@ Twodoist is a clone of the popular task-manager app Todoist. Twodoist is built u
 8. If not automatically redirected, navigate in your browser to `http://localhost:3000/`
 
 ### Technical Challenges
+One of the technical challenges that I faced while working on this project was dealing with the logic of the conditions concerned whether a newly-added/newly-edited task should be added (or preserved in the case of edits) to the redux store.
+
+More specifically, I had to create a here condition prop that I would pass into my task creation and edit components; the prop would specify the metric for determining whether the task can stay or whether it will simply be added to the database to be displayed elsewhere. 
+
+For instance, say you are viewing tasks on the 'Today' page and you edit the due date of one of those tasks to be sometime later next week. It follows that the task should not continue to be displayed once the edit is submitted. On the contrary, if that same edit were made on the 'All tasks' page, then it would make sense for the task to remain after the edit.
+
+Some code snippets from the add task component to demonstrate this:
+
+```
+const [here, setHere] = useState(hereCondition === 'always');
+
+useEffect(() => {
+  if (hereCondition === 'today') {
+    setHere(dueAt && dueAt <= new Date()); 
+  }
+}, [dueAt, hereCondition])
+
+useEffect(() => {
+  if (hereCondition === 'list') {
+    setHere(listId === defaultList)
+  }
+}, [listId, hereCondition, defaultList])
+```
+
+The `here` value would then be passed on to the thunk, which would then conditionally dispatch an action creator based off of that value:
+
+```
+if (response.ok) {
+  const output = await response.json();
+  if (here) {
+    dispatch(addOne(output.task));
+  }
+  return 'Success';
+}
+```
 
 ### Future To-Dos
