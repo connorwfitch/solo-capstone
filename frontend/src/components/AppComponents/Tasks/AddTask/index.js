@@ -8,7 +8,7 @@ import DateSelectorModal from '../../../Misc/DateSelector/DateSelectorModal';
 import { createTask } from '../../../../store/task';
 import { getLists } from '../../../../store/list';
 
-function AddTaskInline({ defaultList, hereCondition }) {
+function AddTaskInline({ defaultList, hereCondition, showEditor, setShowEditor }) {
   const user = useSelector(state => state.session.user);
   const lists = useSelector(state => state.lists);
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ function AddTaskInline({ defaultList, hereCondition }) {
       .filter((list) => list.title === 'Inbox')[0]?.id;
   }
 
-  const [showAddForm, setShowAddForm] = useState(false);
   const [title, setTitle] = useState("");
   const [details, setDetails] = useState("");
   const [dueAt, setDueAt] = useState(null);
@@ -35,6 +34,8 @@ function AddTaskInline({ defaultList, hereCondition }) {
     if (defaultList === 'Inbox') {
       setListId(Object.values(lists)
         .filter((list) => list.title === 'Inbox')[0]?.id)
+    } else {
+      setListId(defaultList);
     }
   }, [defaultList, lists])
 
@@ -72,14 +73,14 @@ function AddTaskInline({ defaultList, hereCondition }) {
   };
 
   const resetForm = () => {
-    setShowAddForm(false);
+    setShowEditor('');
     setTitle("");
     setDetails("");
     setDueAt(null);
     setListId(defaultListId);
   }
 
-  if (showAddForm) {
+  if (showEditor==='new') {
     return (
       <form className='task-inline' onSubmit={handleSubmit}>
         {errors.length > 0 && <ul className="errors">
@@ -134,7 +135,7 @@ function AddTaskInline({ defaultList, hereCondition }) {
     return (
       <button 
         className='task-add-btn' 
-        onClick={() => setShowAddForm(true)}
+        onClick={() => setShowEditor('new')}
       >
         <i className="fa-solid fa-plus"></i>
         Add task
