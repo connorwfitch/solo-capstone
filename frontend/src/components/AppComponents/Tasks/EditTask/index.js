@@ -18,7 +18,7 @@ function EditTaskInline({ task, hereCondition, setShowEditor }) {
 
   const [title, setTitle] = useState(task.title);
   const [details, setDetails] = useState(task.details);
-  const [dueAt, setDueAt] = useState(task.dueAt);
+  const [dueAt, setDueAt] = useState(new Date(task.dueAt));
   const [listId, setListId] = useState(task.listId);
   const [errors, setErrors] = useState([]);
   const [here, setHere] = useState(1);
