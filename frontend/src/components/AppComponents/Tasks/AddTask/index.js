@@ -80,6 +80,13 @@ function AddTaskInline({ defaultList, hereCondition, showEditor, setShowEditor }
     setListId(defaultListId);
   }
 
+  useEffect(() => {
+    const newErrors = [];
+    if (title.length > 128) newErrors.push('Title may be at most 128 characters long.')
+    if (details.length > 1000) newErrors.push('Details may be at most 1000 characters long.')
+    setErrors(newErrors);
+  }, [title, details]);
+
   if (showEditor==='new') {
     return (
       <form className='task-inline' onSubmit={handleSubmit}>

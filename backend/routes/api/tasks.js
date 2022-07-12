@@ -1,13 +1,13 @@
 // External modules
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-// const { check } = require('express-validator');
+const { check } = require('express-validator');
 // const moment = require('moment');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
 const { Task, Sequelize: { Op } } = require('../../db/models');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors } = require('../../utils/validation');
 
 
 const router = express.Router();
@@ -15,6 +15,18 @@ const router = express.Router();
 /*
 -------------------VALIDATORS-------------------
 */
+
+const validateTask = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Must include a title.')
+    .isLength({ max: 128 })
+    .withMessage('Title may be at most 128 characters long.'),
+  check('details')
+    .isLength({ max: 1000 })
+    .withMessage('Details may be at most 1000 characters long.'),
+  handleValidationErrors
+];
 
 /*
 -------------------ROUTES-------------------
