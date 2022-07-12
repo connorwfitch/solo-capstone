@@ -18,6 +18,7 @@ const router = express.Router();
 const validateList = [
   check('title')
     .exists({ checkFalsy: true})
+    .withMessage('Must include a title.')
     .isLength({ max: 50 })
     .withMessage('Title may be at most 50 characters long.'),
   handleValidationErrors

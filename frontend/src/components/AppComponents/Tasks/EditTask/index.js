@@ -59,6 +59,13 @@ function EditTaskInline({ task, hereCondition, setShowEditor }) {
       )
   };
 
+  useEffect(() => {
+    const newErrors = [];
+    if (!title.length) newErrors.push('Must include a title.')
+    if (title.length > 128) newErrors.push('Title may be at most 128 characters long.')
+    if (details.length > 1000) newErrors.push('Details may be at most 1000 characters long.')
+    setErrors(newErrors);
+  }, [title, details]);
 
   return (
     <form className='task-inline' onSubmit={handleSubmit}>
