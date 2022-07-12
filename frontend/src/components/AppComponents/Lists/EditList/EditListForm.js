@@ -56,6 +56,7 @@ function EditListForm({ setShowModal, list }) {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder='Title (required)'
           required
         />
       </label>

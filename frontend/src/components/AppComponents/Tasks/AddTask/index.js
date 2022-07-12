@@ -101,7 +101,7 @@ function AddTaskInline({ defaultList, hereCondition, showEditor, setShowEditor }
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          placeholder='Title'
+          placeholder='Title (required)'
         />
         <textarea
           className='task-inline-details'
