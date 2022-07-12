@@ -1,5 +1,6 @@
 // External modules
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
 // Internal modules
 import { deleteTask, editTask } from "../../../../store/task";
@@ -55,11 +56,16 @@ function TaskSingle({ task, showMenu, setShowMenu, showEditor, setShowEditor, he
     )
   }
 
-  let extraClass = '';
-  if (task.completed) extraClass = 'completed';
+  let completedClass = '';
+  if (task.completed) completedClass = 'completed';
 
   let dateMessage = '';
   if (task.dueAt) dateMessage = dateUtil(task.dueAt.toString());
+
+  let overdueStyle = '';
+  if (task.dueAt && task.dueAt < moment().format('YYYY-MM-DD 00:00')) {
+    overdueStyle = 'overdue'
+  }
 
   if (showEditor === task.id) {
     return (
@@ -76,7 +82,7 @@ function TaskSingle({ task, showMenu, setShowMenu, showEditor, setShowEditor, he
           className="btn-check"
           onClick={handleComplete}
         >
-          <i className={`fa-regular fa-circle-check ${extraClass}`}></i>
+          <i className={`fa-regular fa-circle-check ${completedClass}`}></i>
         </button>
         <div className="task-single-details">
           <p className="task-title">
@@ -88,7 +94,7 @@ function TaskSingle({ task, showMenu, setShowMenu, showEditor, setShowEditor, he
             </p>
           )}
           {task.dueAt && (
-            <p className="task-single-sub">
+            <p className={`task-single-sub ${overdueStyle}`}>
               {dateMessage}
             </p>
           )}

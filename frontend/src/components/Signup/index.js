@@ -59,7 +59,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Email
+            Email 
             <input
               type="text"
               value={email}
@@ -68,7 +68,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Password
+            Password 
             <input
               type="password"
               value={password}
@@ -77,7 +77,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Confirm Password
+            Confirm Password 
             <input
               type="password"
               value={confirmPassword}
@@ -86,7 +86,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Color
+            Color 
             <ColorSelector
               required
               defaultVal={color}
