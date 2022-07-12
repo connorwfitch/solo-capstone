@@ -32,7 +32,7 @@ const validateTask = [
 -------------------ROUTES-------------------
 */
 // POST /api/tasks (create a task)
-router.post('/', requireAuth, asyncHandler(async (req, res) => {
+router.post('/', requireAuth, validateTask, asyncHandler(async (req, res) => {
   const { title, details, dueAt, listId, userId } = req.body;
   const task = await Task.create({ title, details, dueAt, listId, userId });
 
@@ -42,7 +42,7 @@ router.post('/', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 // PATCH /api/tasks/:taskId (update a task)
-router.patch('/:taskId', requireAuth, asyncHandler(async (req, res) => {
+router.patch('/:taskId', requireAuth, validateTask, asyncHandler(async (req, res) => {
   const taskId = parseInt(req.params.taskId, 10);
   const { title, details, dueAt, completed, listId } = req.body;
 
