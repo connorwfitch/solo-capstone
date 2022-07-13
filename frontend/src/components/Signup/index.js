@@ -1,5 +1,5 @@
 // External modules
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
@@ -31,6 +31,12 @@ function SignupPage() {
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+
+  useEffect(() => {
+    if (password !== confirmPassword) {
+      setErrors([...errors])
+    }
+  })
 
   if (user) return (
     <Redirect to="/app" />
