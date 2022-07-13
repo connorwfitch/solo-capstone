@@ -33,7 +33,7 @@ function EditListForm({ setShowModal, list }) {
 
   useEffect(() => {
     const newErrors = [];
-    if(!title.length) newErrors.push('Must include a title.')
+    if (!title.length) newErrors.push('Must include a title.')
     if (title.length > 50) newErrors.push('Title may be at most 50 characters long.')
     if (title === 'Inbox') newErrors.push('May not name list \'Inbox\'')
     setErrors(newErrors);

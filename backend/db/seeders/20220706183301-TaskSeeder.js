@@ -5,11 +5,13 @@ module.exports = {
     return queryInterface.bulkInsert('Tasks', [
       {
         title: 'Walk the dog',
+        details: 'She is a good puppy',
         listId: 1,
         userId: 1
       },
       {
         title: 'Refill prescription',
+        details: 'Pharmacy on the corner of South Ave',
         listId: 1,
         userId: 1
       },
@@ -19,17 +21,28 @@ module.exports = {
         userId: 1
       },
       {
-        title: 'Complete error handling',
+        title: 'Create a Todoist clone',
+        dueAt: new Date('2022-07-18'),
         listId: 2,
         userId: 1
       },
       {
-        title: 'Schedule a meeting with Tony Stark',
+        title: 'Schedule a meeting with Bill Gates',
+        details: 'Pitch my billion dollar business idea: make a new state called West Dakota',
+        dueAt: new Date('2022-08-03'),
         listId: 2,
         userId: 1
       },
       {
         title: 'Get a birthday present for Alex',
+        details: 'Maybe something for his pottery?',
+        dueAt: new Date('2022-09-17'),
+        listId: 4,
+        userId: 1
+      },
+      {
+        title: 'Help Mitch move apartments',
+        dueAt: new Date('2022-08-08'),
         listId: 4,
         userId: 1
       },

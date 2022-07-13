@@ -71,9 +71,8 @@
 .task-single-details p {
   padding: 0;
   margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .task-title {
@@ -190,4 +189,13 @@
 .task-single-actions:hover {
   color: black;
   background-color: #f2f2f2;
+}
+
+.overdue {
+  color: #E44332;
+}
+
+.list-title {
+  word-wrap: break-word;
+  white-space: normal;
 }

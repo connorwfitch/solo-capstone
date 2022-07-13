@@ -32,6 +32,14 @@ function SignupPage() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
+  // useEffect(() => {
+  //   const newErrors = [];
+  //   if (password !== confirmPassword) {
+  //     newErrors.push('Confirm Password field must be the same as the Password field');
+  //   }
+  //   setErrors(newErrors);
+  // }, [password, confirmPassword])
+
   if (user) return (
     <Redirect to="/app" />
   );
@@ -59,7 +67,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Email
+            Email 
             <input
               type="text"
               value={email}
@@ -68,7 +76,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Password
+            Password 
             <input
               type="password"
               value={password}
@@ -77,7 +85,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Confirm Password
+            Confirm Password 
             <input
               type="password"
               value={confirmPassword}
@@ -86,7 +94,7 @@ function SignupPage() {
             />
           </label>
           <label>
-            Color
+            Color 
             <ColorSelector
               required
               defaultVal={color}

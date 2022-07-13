@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         title: 'Social',
-        color: '#EAC435',
+        color: '#7B52A9',
         userId: 1
       },
       {

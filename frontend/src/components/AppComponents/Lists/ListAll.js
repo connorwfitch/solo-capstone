@@ -11,7 +11,7 @@ import AddTaskInline from '../Tasks/AddTask';
 function ListAll({ showSidebar }) {
   const user = useSelector(state => state.session.user);
   const tasks = useSelector(state => state.tasks);
-  // const lists = useSelector(state => state.lists);
+  const lists = useSelector(state => state.lists);
 
   const [showMenu, setShowMenu] = useState('');
   const [showEditor, setShowEditor] = useState('');
@@ -22,7 +22,7 @@ function ListAll({ showSidebar }) {
 
   useEffect(() => {
     dispatch(getAllTasks(userId));
-  }, [dispatch, userId])
+  }, [dispatch, userId, lists])
 
   let sizingClass = '';
   if (showSidebar) sizingClass = 'hide';

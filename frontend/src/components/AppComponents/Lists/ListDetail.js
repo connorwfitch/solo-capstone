@@ -41,7 +41,7 @@ function ListDetail({ showSidebar }) {
   return tasks && list && (
     <div id='content-container' className={sizingClass}>
       <div className='tasks-main'>
-        <h1>{list.title}</h1>
+        <h1 className='list-title'>{list.title}</h1>
         <div className='tasks-holder'>
           {Object.values(tasks).map((task) => {
             return (
