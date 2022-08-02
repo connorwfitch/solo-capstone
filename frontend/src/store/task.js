@@ -66,17 +66,6 @@ export const getTasksByList = (listId) => async dispatch => {
   return response;
 }
 
-export const getTasksByTag = (tagId) => async dispatch => {
-  const response = await csrfFetch(`/api/tags/${tagId}/tasks`);
-
-  if (response.ok) {
-    const output = await response.json();
-    dispatch(loadAll(output.tasks));
-  }
-
-  return response;
-}
-
 export const createTask = (task, here) => async dispatch => {
   const { title, details, dueAt, listId, userId } = task;
   const response = await csrfFetch('/api/tasks', {

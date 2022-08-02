@@ -51,8 +51,6 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     User.hasMany(models.List, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
     User.hasMany(models.Task, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
-    User.hasMany(models.Tag, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
-    User.hasMany(models.Filter, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true });
   };
 
   // User instance methods

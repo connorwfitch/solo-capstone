@@ -6,7 +6,7 @@ const moment = require('moment');
 
 // Internal modules
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, List, Task, Tag, Sequelize: { Op } } = require('../../db/models');
+const { User, List, Task, Sequelize: { Op } } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -162,18 +162,5 @@ router.delete('/:userId/tasks/completed', requireAuth, asyncHandler(async (req, 
   });
 }));
 
-// GET /api/users/:userId/tags (get all tags for a user)
-router.get('/:userId/tags', requireAuth, asyncHandler(async (req, res) => {
-  const userId = parseInt(req.params.userId, 10);
-  const tags = await Tag.findAll({
-    where: {
-      userId
-    }
-  });
-
-  return res.json({
-    tags
-  });
-}));
 
 module.exports = router;

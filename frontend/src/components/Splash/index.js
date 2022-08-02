@@ -59,7 +59,7 @@ function Splash() {
               Accomplish more
             </h2>
             <p className='light ralign'>
-              Organizing your tasks into lists and categorizing with tags can help you 
+              Organizing your tasks into lists or visualizing them with kanban boards can help you 
               better understand your next task and get it done quicker.
             </p>
           </div>
