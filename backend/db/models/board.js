@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Board.associate = function(models) {
-    // associations can be defined here
+    Board.belongsTo(models.User, { foreignKey: 'userId' });
+    Board.hasMany(models.Section, { foreignKey: 'boardId', onDelete: 'CASCADE', hooks: true });
   };
   return Board;
 };

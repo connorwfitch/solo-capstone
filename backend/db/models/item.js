@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     sectionId: DataTypes.INTEGER
   }, {});
   Item.associate = function(models) {
-    // associations can be defined here
+    Item.belongsTo(models.Section, { foreignKey: 'sectionId' });
   };
   return Item;
 };
