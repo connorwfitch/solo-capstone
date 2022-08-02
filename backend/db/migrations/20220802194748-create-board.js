@@ -9,21 +9,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       color: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(7),
+        allowNull: false,
+        defaultValue: '#E44332'
       },
       userId: {
+        allowNull: false,
+        references: { model: 'Users' },
         type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       }
     });
   },

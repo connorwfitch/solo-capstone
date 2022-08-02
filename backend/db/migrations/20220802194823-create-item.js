@@ -9,24 +9,30 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(128)
       },
       details: {
         type: Sequelize.TEXT
       },
       index: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       sectionId: {
+        allowNull: false,
+        references: { model: 'Sections' },
         type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
