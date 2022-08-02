@@ -13,11 +13,11 @@ npx dotenv sequelize db:seed:undo:all
 
 --------------------------------------------------------------------------------
 Models and Migrations
-npx sequelize model:generate --name List --attributes title:string,icon:string,color:string,userId:integer
+npx sequelize model:generate --name List --attributes title:string,color:string,userId:integer
 npx sequelize model:generate --name Task --attributes title:string,details:text,dueAt:date,completed:boolean,listId:integer,userId:integer
-npx sequelize model:generate --name Tag --attributes title:string,color:string,userId:integer
-npx sequelize model:generate --name TaskTag --attributes taskId:integer,tagId:integer
-npx sequelize model:generate --name Filter --attributes title:string,color:string,query:text,userId:integer
+npx sequelize model:generate --name Board --attributes title:string,color:string,userId:integer
+npx sequelize model:generate --name Section --attributes title:string,index:integer,boardId:integer
+npx sequelize model:generate --name Item --attributes title:string,details:text,index:integer,sectionId:integer
 
 npx dotenv sequelize db:drop
 npx dotenv sequelize db:create
@@ -29,9 +29,9 @@ npx dotenv sequelize db:migrate
 Seeders
 npx sequelize seed:generate --name ListSeeder
 npx sequelize seed:generate --name TaskSeeder
-npx sequelize seed:generate --name TagSeeder
-npx sequelize seed:generate --name TaskTagSeeder
-npx sequelize seed:generate --name FilterSeeder
+npx sequelize seed:generate --name BoardSeeder
+npx sequelize seed:generate --name SectionSeeder
+npx sequelize seed:generate --name ItemSeeder
 
 npx dotenv sequelize db:seed:all
 

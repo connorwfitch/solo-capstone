@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Filters', {
+    return queryInterface.createTable('Sections', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,18 +12,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      color: {
-        type: Sequelize.STRING(7),
+      index: {
         allowNull: false,
-        defaultValue: '#E44332'
+        type: Sequelize.INTEGER
       },
-      query: {
+      boardId: {
         allowNull: false,
-        type: Sequelize.TEXT
-      },
-      userId: {
-        allowNull: false,
-        references: { model: 'Users' },
+        references: { model: 'Boards' },
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -39,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Filters');
+    return queryInterface.dropTable('Sections');
   }
 };
