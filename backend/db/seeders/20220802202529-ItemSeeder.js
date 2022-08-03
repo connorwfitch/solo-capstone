@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Sections', [
+    return queryInterface.bulkInsert('Items', [
       // Board 1
       {
         title: 'Synergize team infrastructure',
