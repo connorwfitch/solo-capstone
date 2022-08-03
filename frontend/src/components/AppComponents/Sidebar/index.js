@@ -6,13 +6,15 @@ import { useSelector, useDispatch } from "react-redux";
 // Internal modules
 import './Sidebar.css'
 import { getLists } from "../../../store/list";
+import { getBoards } from "../../../store/board";
 import AddListModal from "../Lists/AddList/AddListModal";
 import AddBoardModal from "../Boards/AddBoard/AddBoardModal";
-import SidebarLink from "./SidebarLink";
+import SidebarLinkList from "./SidebarLinkList";
 
 function Sidebar({ showSidebar }) {
   const user = useSelector(state => state.session.user);
   const lists = useSelector(state => state.lists);
+  const boards = useSelector(state => state.boards);
 
   const dispatch = useDispatch();
 
@@ -20,6 +22,7 @@ function Sidebar({ showSidebar }) {
 
   useEffect(() => {
     dispatch(getLists(user.id));
+    dispatch(getBoards(user.id));
   }, [dispatch, user.id])
 
   const inboxId = Object.values(lists).filter((list) => list.title === "Inbox")[0]?.id;
@@ -76,7 +79,7 @@ function Sidebar({ showSidebar }) {
         {Object.values(lists).map((list) => {
           if (list.title === "Inbox") return null;
           return (
-            <SidebarLink key={`list-${list.id}`} list={list}
+            <SidebarLinkList key={`list-${list.id}`} list={list}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
             />
@@ -88,6 +91,14 @@ function Sidebar({ showSidebar }) {
           <p>Boards</p>
           <AddBoardModal />
         </div>
+        {Object.values(boards).map((board) => {
+          return (
+            <SidebarLinkBoard key={`board-${board.id}`} board={board}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+            />
+          )
+        })}
       </div>
     </div>
   );

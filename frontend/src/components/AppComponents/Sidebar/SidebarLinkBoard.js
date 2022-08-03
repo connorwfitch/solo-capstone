@@ -3,17 +3,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 // Internal modules
-import EditListModal from "../Lists/EditList/EditListModal";
-import DeleteListModal from "../Lists/DeleteList/DeleteListModal";
+import EditBoardModal from "../Boards/EditBoard/EditBoardModal";
+// import DeleteListModal from "../Lists/DeleteList/DeleteListModal";
 
-function SidebarLink({ list, showMenu, setShowMenu }) {
+function SidebarLinkList({ list, showMenu, setShowMenu }) {
   let buttons;
 
   if (list.id === showMenu) {
     buttons = (
       <div className="sidebar-details-menu">
         <DeleteListModal list={list} />
-        <EditListModal list={list}/>
+        <EditBoardModal list={list} />
         <button className="sidebar-details" onClick={() => setShowMenu('')}>
           <i className="fa-solid fa-ellipsis"></i>
         </button>
@@ -43,4 +43,4 @@ function SidebarLink({ list, showMenu, setShowMenu }) {
   )
 };
 
-export default SidebarLink;
+export default SidebarLinkList;
