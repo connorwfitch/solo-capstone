@@ -4,16 +4,16 @@ import { NavLink } from "react-router-dom";
 
 // Internal modules
 import EditBoardModal from "../Boards/EditBoard/EditBoardModal";
-// import DeleteListModal from "../Lists/DeleteList/DeleteListModal";
+import DeleteBoardModal from "../Boards/DeleteBoard/DeleteBoardModal";
 
-function SidebarLinkList({ list, showMenu, setShowMenu }) {
+function SidebarLinkBoard({ board, showMenu, setShowMenu }) {
   let buttons;
 
-  if (list.id === showMenu) {
+  if ('board' + board.id === showMenu) {
     buttons = (
       <div className="sidebar-details-menu">
-        <DeleteListModal list={list} />
-        <EditBoardModal list={list} />
+        <DeleteBoardModal board={board} />
+        <EditBoardModal board={board} />
         <button className="sidebar-details" onClick={() => setShowMenu('')}>
           <i className="fa-solid fa-ellipsis"></i>
         </button>
@@ -21,7 +21,7 @@ function SidebarLinkList({ list, showMenu, setShowMenu }) {
     )
   } else {
     buttons = (
-      <button className="sidebar-details" onClick={() => setShowMenu(list.id)}>
+      <button className="sidebar-details" onClick={() => setShowMenu('board' + board.id)}>
         <i className="fa-solid fa-ellipsis"></i>
       </button>
     )
@@ -30,17 +30,17 @@ function SidebarLinkList({ list, showMenu, setShowMenu }) {
 
   return (
     <NavLink className='sidebar-nl' activeClassName='sidebar-nl-active'
-      to={`/app/lists/${list.id}`}>
+      to={`/app/boards/${board.id}`}>
       <i className="fa-solid fa-circle" style={{
-        color: list.color,
+        color: board.color,
         fontSize: '10px'
       }}></i>
       <div className="ellipses">
-        {list.title}
+        {board.title}
       </div>
       {buttons}
     </NavLink>
   )
 };
 
-export default SidebarLinkList;
+export default SidebarLinkBoard;

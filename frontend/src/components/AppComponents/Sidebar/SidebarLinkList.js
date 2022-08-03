@@ -9,7 +9,7 @@ import DeleteListModal from "../Lists/DeleteList/DeleteListModal";
 function SidebarLinkList({ list, showMenu, setShowMenu }) {
   let buttons;
 
-  if (list.id === showMenu) {
+  if ('list' + list.id === showMenu) {
     buttons = (
       <div className="sidebar-details-menu">
         <DeleteListModal list={list} />
@@ -21,7 +21,7 @@ function SidebarLinkList({ list, showMenu, setShowMenu }) {
     )
   } else {
     buttons = (
-      <button className="sidebar-details" onClick={() => setShowMenu(list.id)}>
+      <button className="sidebar-details" onClick={() => setShowMenu('list' + list.id)}>
         <i className="fa-solid fa-ellipsis"></i>
       </button>
     )

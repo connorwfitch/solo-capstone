@@ -10,6 +10,7 @@ import { getBoards } from "../../../store/board";
 import AddListModal from "../Lists/AddList/AddListModal";
 import AddBoardModal from "../Boards/AddBoard/AddBoardModal";
 import SidebarLinkList from "./SidebarLinkList";
+import SidebarLinkBoard from "./SidebarLinkBoard";
 
 function Sidebar({ showSidebar }) {
   const user = useSelector(state => state.session.user);
