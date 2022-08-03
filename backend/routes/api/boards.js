@@ -38,20 +38,24 @@ router.post('/', requireAuth, validateBoard, asyncHandler(async (req, res) => {
   });
 }));
 
-// GET /api/lists/:boardId/tasks (get all incomplete tasks for a list)
-// router.get('/:boardId/tasks', requireAuth, asyncHandler(async (req, res) => {
-//   const boardId = parseInt(req.params.boardId, 10);
-//   const tasks = await Task.findAll({
-//     where: {
-//       boardId,
-//       completed: false
-//     }
-//   });
+// GET /api/boards/:boardId/sections (get all sections for a board)
+router.get('/:boardId/sections', requireAuth, asyncHandler(async (req, res) => {
+  const boardId = parseInt(req.params.boardId, 10);
+  const sections = await Section.findAll({
+    where: {
+      boardId,
+    },
+    order: ['index', 'ASC'],
+    include: {
+      model: Item,
+      order: ['index', 'ASC']
+    },
+  });
 
-//   return res.json({
-//     tasks
-//   });
-// }));
+  return res.json({
+    sections
+  });
+}));
 
 // PATCH /api/boards/:boardId (update a board)
 router.patch('/:boardId', requireAuth, validateBoard, asyncHandler(async (req, res) => {

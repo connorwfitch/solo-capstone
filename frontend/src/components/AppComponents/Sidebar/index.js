@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import './Sidebar.css'
 import { getLists } from "../../../store/list";
 import AddListModal from "../Lists/AddList/AddListModal";
+import AddBoardModal from "../Boards/AddBoard/AddBoardModal";
 import SidebarLink from "./SidebarLink";
 
 function Sidebar({ showSidebar }) {
@@ -82,11 +83,12 @@ function Sidebar({ showSidebar }) {
           )
         })}
       </div>
-      {/* <div className="sidebar-section">
+      <div className="sidebar-section">
         <div className="sidebar-label">
-          <p>Tags</p>
+          <p>Boards</p>
+          <AddBoardModal />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
