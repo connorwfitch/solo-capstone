@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Sections', [
+    return queryInterface.bulkInsert('Items', [
       // Board 1
       {
         title: 'Synergize team infrastructure',
@@ -41,12 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('Items', null, {});
   }
 };

@@ -6,12 +6,14 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import listsReducer from './list';
 import tasksReducer from './task';
+import boardsReducer from './board';
 
 // Root reducer
 const rootReducer = combineReducers({
   session: sessionReducer,
   lists: listsReducer,
   tasks: tasksReducer,
+  boards: boardsReducer,
 });
 
 let enhancer;
