@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Board = sequelize.define('Board', {
     title: DataTypes.STRING,
     color: DataTypes.STRING,
+    orderIds: DataTypes.TEXT,
     userId: DataTypes.INTEGER
   }, {});
   Board.associate = function(models) {
