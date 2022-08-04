@@ -29,9 +29,9 @@ const validateSection = [
 */
 // POST /api/sections (create a section)
 router.post('/', requireAuth, validateSection, asyncHandler(async (req, res) => {
-  const { title, index, boardId } = req.body;
+  const { title, boardId } = req.body;
 
-  const section = await Section.create({ title, index, boardId });
+  const section = await Section.create({ title, orderIds: '', boardId });
 
   return res.json({
     section
@@ -41,11 +41,11 @@ router.post('/', requireAuth, validateSection, asyncHandler(async (req, res) => 
 // PATCH /api/sections/:sectionId (update a section)
 router.patch('/:sectionId', requireAuth, validateSection, asyncHandler(async (req, res) => {
   const sectionId = parseInt(req.params.sectionId, 10);
-  const { title, index, boardId } = req.body;
+  const { title, orderIds, boardId } = req.body;
 
   const section = await Section.findByPk(sectionId);
 
-  await section.update({ title, index, boardId })
+  await section.update({ title, orderIds, boardId })
 
   return res.json({
     section
