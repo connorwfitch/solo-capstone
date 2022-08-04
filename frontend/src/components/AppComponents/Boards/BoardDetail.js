@@ -7,6 +7,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 // Internal modules
 import { getSectionsByBoard } from '../../../store/section';
 import NotFoundApp from '../NotFoundApp';
+import './Boards.css';
 
 
 function BoardDetail({ showSidebar }) {
@@ -36,9 +37,12 @@ function BoardDetail({ showSidebar }) {
   if (showSidebar) sizingClass = 'hide';
 
   return sections && board && (
-    <div id='content-container' className={sizingClass}>
+    <div id='board-content-container' className={sizingClass}>
       <div className='boards-main'>
         <h1 className='board-title'>{board.title}</h1>
+        <div className='sections-holder'>
+
+        </div>
       </div>
     </div>
   )
