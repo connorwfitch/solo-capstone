@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 // Internal modules
+import { getSectionsByBoard } from '../../../store/section';
 import NotFoundApp from '../NotFoundApp';
 
 
@@ -22,7 +23,7 @@ function BoardDetail({ showSidebar }) {
 
   useEffect(() => {
     setShowEditor('');
-    // dispatch(getTasksByList(listId));
+    dispatch(getSectionsByBoard(boardId));
   }, [dispatch, boardId])
 
   if (!Object.keys(boards).includes(boardId)) {

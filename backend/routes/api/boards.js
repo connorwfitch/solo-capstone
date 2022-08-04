@@ -45,10 +45,10 @@ router.get('/:boardId/sections', requireAuth, asyncHandler(async (req, res) => {
     where: {
       boardId,
     },
-    order: ['index', 'ASC'],
+    order: ['index'],
     include: {
       model: Item,
-      order: ['index', 'ASC']
+      order: ['index']
     },
   });
 
