@@ -10,6 +10,7 @@ import ListCompleted from "./Lists/ListCompleted";
 import ListDetail from "./Lists/ListDetail";
 import ListToday from "./Lists/ListToday";
 import Sidebar from "./Sidebar";
+import BoardDetail from "./Boards/BoardDetail";
 import NotFoundApp from "./NotFoundApp";
 
 function PrimaryApp() {
@@ -31,6 +32,9 @@ function PrimaryApp() {
         </Route>
         <Route exact path='/app/lists/:listId'>
           <ListDetail showSidebar={showSidebar}/>
+        </Route>
+        <Route exact path='/app/boards/:boardId'>
+          <BoardDetail showSidebar={showSidebar} />
         </Route>
         <Route>
           <NotFoundApp showSidebar={showSidebar}/>
