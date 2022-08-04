@@ -32,9 +32,9 @@ const validateItem = [
 */
 // POST /api/items (create an item)
 router.post('/', requireAuth, validateItem, asyncHandler(async (req, res) => {
-  const { title, details, index, sectionId } = req.body;
+  const { title, details, sectionId } = req.body;
 
-  const item = await Item.create({ title, details, index, sectionId });
+  const item = await Item.create({ title, details, sectionId });
 
   return res.json({
     item
@@ -44,11 +44,11 @@ router.post('/', requireAuth, validateItem, asyncHandler(async (req, res) => {
 // PATCH /api/items/:itemId (update an item)
 router.patch('/:itemId', requireAuth, validateItem, asyncHandler(async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
-  const { title, details, index, sectionId } = req.body;
+  const { title, details, sectionId } = req.body;
 
   const item = await Item.findByPk(itemId);
 
-  await item.update({ title, details, index, sectionId })
+  await item.update({ title, details, sectionId })
 
   return res.json({
     item

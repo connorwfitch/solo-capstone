@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         defaultValue: '#E44332'
       },
+      orderIds: {
+        type: Sequelize.TEXT,
+        defaultValue: '',
+      },
       userId: {
         allowNull: false,
         references: { model: 'Users' },

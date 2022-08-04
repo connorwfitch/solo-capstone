@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Section = sequelize.define('Section', {
     title: DataTypes.STRING,
-    index: DataTypes.INTEGER,
+    orderIds: DataTypes.TEXT,
     boardId: DataTypes.INTEGER
   }, {});
   Section.associate = function(models) {

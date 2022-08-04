@@ -31,7 +31,7 @@ const validateBoard = [
 router.post('/', requireAuth, validateBoard, asyncHandler(async (req, res) => {
   const { title, color, userId } = req.body;
 
-  const board = await Board.create({ title, color, userId });
+  const board = await Board.create({ title, color, orderIds: '', userId });
 
   return res.json({
     board
@@ -45,10 +45,8 @@ router.get('/:boardId/sections', requireAuth, asyncHandler(async (req, res) => {
     where: {
       boardId,
     },
-    order: ['index', 'ASC'],
     include: {
       model: Item,
-      order: ['index', 'ASC']
     },
   });
 

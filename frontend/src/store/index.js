@@ -7,6 +7,7 @@ import sessionReducer from './session';
 import listsReducer from './list';
 import tasksReducer from './task';
 import boardsReducer from './board';
+import sectionsReducer from './section';
 
 // Root reducer
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   lists: listsReducer,
   tasks: tasksReducer,
   boards: boardsReducer,
+  sections: sectionsReducer,
 });
 
 let enhancer;

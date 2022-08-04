@@ -6,34 +6,34 @@ module.exports = {
       // Board 1
       {
         title: 'Upcoming',
-        index: 1,
+        orderIds: ',1,2,3',
         boardId: 1
       },
       {
         title: 'In Progress',
-        index: 2,
+        orderIds: '',
         boardId: 1
       },
       {
         title: 'Complete',
-        index: 3,
+        orderIds: '',
         boardId: 1
       },
 
       // Board 2
       {
         title: 'Upcoming',
-        index: 1,
+        orderIds: ',4,5,6',
         boardId: 2
       },
       {
         title: 'In Progress',
-        index: 2,
+        orderIds: '',
         boardId: 2
       },
       {
         title: 'Complete',
-        index: 3,
+        orderIds: '',
         boardId: 2
       },
 

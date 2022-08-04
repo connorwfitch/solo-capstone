@@ -15,10 +15,6 @@ module.exports = {
       details: {
         type: Sequelize.TEXT
       },
-      index: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
       sectionId: {
         allowNull: false,
         references: { model: 'Sections' },

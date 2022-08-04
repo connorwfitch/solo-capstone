@@ -12,9 +12,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      index: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+      orderIds: {
+        type: Sequelize.TEXT,
+        defaultValue: '',
       },
       boardId: {
         allowNull: false,

@@ -13,7 +13,10 @@ function AppNav({ showSidebar, setShowSidebar }) {
       <div className='app-nav-holder'>
         <button className="btn app-nav-btn" 
           onClick={() => {
-            const contentContainer = document.querySelector('#content-container');
+            let contentContainer = document.querySelector('#content-container');
+            if (!contentContainer) {
+              contentContainer = document.querySelector('#board-content-container');
+            }
             if (showSidebar) {
               contentContainer.classList.remove('hide');
             } else {
