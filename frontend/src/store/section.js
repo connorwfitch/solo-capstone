@@ -33,6 +33,26 @@ export const getSectionsByBoard = (boardId) => async dispatch => {
   return response;
 }
 
+export const editSection = (section) => async dispatch => {
+  const { sectionId, title, orderIds, boardId } = section;
+
+  const response = await csrfFetch(`/api/sections/${sectionId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      title,
+      orderIds,
+      boardId
+    })
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(addOne(output.section));
+    return 'Success';
+  }
+  return response;
+}
+
 // initial state
 const initialState = {};
 
@@ -48,6 +68,7 @@ const sectionsReducer = (state = initialState, action) => {
         section.Items.forEach(item => {
           section.items[item.id] = item;
         })
+        delete section.Items;
         newState[section.id] = section
       });
       return newState;
@@ -55,9 +76,12 @@ const sectionsReducer = (state = initialState, action) => {
       newState = { ...state };
       // put items in their own sub-dict
       action.section.items = {};
-      action.section.Items.forEach(item => {
-        action.section.items[item.id] = item;
-      })
+      if (action.section.Items) {
+        action.section.Items.forEach(item => {
+          action.section.items[item.id] = item;
+        })
+        delete action.section.Items;
+      }
       newState[action.section.id] = action.section;
       return newState;
     case DELETE_ONE:

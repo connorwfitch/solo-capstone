@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { Section } = require('../../db/models');
+const { Section, Item } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -43,9 +43,11 @@ router.patch('/:sectionId', requireAuth, validateSection, asyncHandler(async (re
   const sectionId = parseInt(req.params.sectionId, 10);
   const { title, orderIds, boardId } = req.body;
 
-  const section = await Section.findByPk(sectionId);
+  const section = await Section.findByPk(sectionId, {
+    include: Item,
+  });
 
-  await section.update({ title, orderIds, boardId })
+  await section.update({ title, orderIds, boardId });
 
   return res.json({
     section

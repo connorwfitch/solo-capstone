@@ -11,21 +11,24 @@ function SectionSingle({ section, index }) {
       <p className="section-title">
         {section.title + section.id}
       </p>
-      <Droppable droppableId={'section' + section.id}>
+      <Droppable droppableId={'section-' + section.id}>
         {(provided) => (
           <div 
             className="items-holder"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {section.orderIds.split(',').slice(1).map((itemId, index) => {
-              return (
-                <ItemSingle 
-                  key={`item-${itemId}`}
-                  item={section.items[itemId]}
-                  index={index}
-                />
-              )
+            {section.orderIds.split(',').map((itemId, index) => {
+              if (section.items[itemId]) {
+                return (
+                  <ItemSingle 
+                    key={`item-${itemId}`}
+                    item={section.items[itemId]}
+                    index={index}
+                  />
+                )
+              }
+              return null;
             })}
             {provided.placeholder}
           </div>

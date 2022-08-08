@@ -7,7 +7,7 @@ import { Draggable } from "react-beautiful-dnd";
 function ItemSingle({ item, index }) {
   return (
     <Draggable
-      draggableId={'item' + item.id}
+      draggableId={'item-' + item.id}
       index={index}
     >
       {(provided) => {
