@@ -2,10 +2,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 // Internal modules
 import { getSectionsByBoard } from '../../../store/section';
+import SectionSingle from '../Sections/SectionSingle';
 import NotFoundApp from '../NotFoundApp';
 import './Boards.css';
 
@@ -40,9 +41,24 @@ function BoardDetail({ showSidebar }) {
     <div id='board-content-container' className={sizingClass}>
       <div className='boards-main'>
         <h1 className='board-title'>{board.title}</h1>
-        <div className='sections-holder'>
-
-        </div>
+          <div className='sections-holder'>
+            {board.orderIds.split(',').slice(1).map((sectionId, index) => {
+              if (sections[sectionId]) {
+                return (
+                  <SectionSingle
+                    key={`section-${sectionId}`}
+                    section={sections[sectionId]}
+                    index={index}
+                    showMenu={showMenu}
+                    setShowMenu={setShowMenu}
+                    showEditor={showEditor}
+                    setShowEditor={setShowEditor}
+                  />
+                )
+              }
+              return null;
+            })}
+          </div>
       </div>
     </div>
   )
