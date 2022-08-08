@@ -39,3 +39,11 @@
   box-sizing: border-box;
   border-radius: 8px;
 }
+
+.item-single {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  box-sizing: border-box;
+  border-radius: 8px;
+}

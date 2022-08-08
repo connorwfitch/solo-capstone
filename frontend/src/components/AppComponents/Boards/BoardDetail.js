@@ -28,6 +28,10 @@ function BoardDetail({ showSidebar }) {
     dispatch(getSectionsByBoard(boardId));
   }, [dispatch, boardId])
 
+  const handleDragEnd = (result) => {
+    return null;
+  }
+
   if (!Object.keys(boards).includes(boardId)) {
     return (
       <NotFoundApp />
@@ -41,24 +45,26 @@ function BoardDetail({ showSidebar }) {
     <div id='board-content-container' className={sizingClass}>
       <div className='boards-main'>
         <h1 className='board-title'>{board.title}</h1>
-          <div className='sections-holder'>
-            {board.orderIds.split(',').slice(1).map((sectionId, index) => {
-              if (sections[sectionId]) {
-                return (
-                  <SectionSingle
-                    key={`section-${sectionId}`}
-                    section={sections[sectionId]}
-                    index={index}
-                    showMenu={showMenu}
-                    setShowMenu={setShowMenu}
-                    showEditor={showEditor}
-                    setShowEditor={setShowEditor}
-                  />
-                )
-              }
-              return null;
-            })}
-          </div>
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <div className='sections-holder'>
+              {board.orderIds.split(',').slice(1).map((sectionId, index) => {
+                if (sections[sectionId]) {
+                  return (
+                    <SectionSingle
+                      key={`section-${sectionId}`}
+                      section={sections[sectionId]}
+                      index={index}
+                      showMenu={showMenu}
+                      setShowMenu={setShowMenu}
+                      showEditor={showEditor}
+                      setShowEditor={setShowEditor}
+                    />
+                  )
+                }
+                return null;
+              })}
+            </div>
+          </DragDropContext>
       </div>
     </div>
   )

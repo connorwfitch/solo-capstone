@@ -43,11 +43,21 @@ const sectionsReducer = (state = initialState, action) => {
     case LOAD_ALL:
       newState = {};
       action.sections.forEach(section => {
+        // put items in their own sub-dict
+        section.items = {};
+        section.Items.forEach(item => {
+          section.items[item.id] = item;
+        })
         newState[section.id] = section
       });
       return newState;
     case ADD_ONE:
       newState = { ...state };
+      // put items in their own sub-dict
+      action.section.items = {};
+      action.section.Items.forEach(item => {
+        action.section.items[item.id] = item;
+      })
       newState[action.section.id] = action.section;
       return newState;
     case DELETE_ONE:
