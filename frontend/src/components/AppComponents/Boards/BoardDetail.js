@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 // Internal modules
-import { getSectionsByBoard, editSection } from '../../../store/section';
+import { getSectionsByBoard, editSection, editItemsSection } from '../../../store/section';
 import SectionSingle from '../Sections/SectionSingle';
 import NotFoundApp from '../NotFoundApp';
 import './Boards.css';
@@ -76,7 +76,12 @@ function BoardDetail({ showSidebar }) {
     newEndIds.splice(destination.index, 0, draggableId.split('-')[1]);
     endSection.orderIds = newEndIds.join(',');
 
-    // return dispatch()
+    return dispatch(editItemsSection({
+      itemId: item.id,
+      startOrderIds: startSection.orderIds,
+      endOrderIds: endSection.orderIds,
+      sectionId: endSection.id
+    }))
   }
 
   if (!Object.keys(boards).includes(boardId)) {
