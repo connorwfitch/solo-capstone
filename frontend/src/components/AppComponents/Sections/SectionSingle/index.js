@@ -1,15 +1,17 @@
 // External modules
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Droppable } from "react-beautiful-dnd";
-import ItemSingle from "../../Items/ItemSingle";
 
 // Internal modules
+import { deleteSection } from "../../../../store/section";
+import ItemSingle from "../../Items/ItemSingle";
 
 function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setShowEditor }) {
+  const dispatch = useDispatch();
 
   const handleDelete = (e) => {
     e.preventDefault();
-    // return dispatch(deleteTask(task.id))
+    return dispatch(deleteSection(section.id))
   }
 
   let buttons;
