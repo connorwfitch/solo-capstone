@@ -1,26 +1,18 @@
 // External modules
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Droppable } from "react-beautiful-dnd";
 
 // Internal modules
-import { deleteSection } from "../../../../store/section";
 import ItemSingle from "../../Items/ItemSingle";
+import DeleteSectionModal from "../DeleteSection/DeleteSectionModal";
 
 function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setShowEditor }) {
-  const dispatch = useDispatch();
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    return dispatch(deleteSection(section.id))
-  }
 
   let buttons;
   if ('section-' + section.id === showMenu) {
     buttons = (
       <div className="section-single-menu">
-        <button className="section-single-actions" onClick={handleDelete}>
-          <i className="fa-solid fa-trash"></i>
-        </button>
+        <DeleteSectionModal section={section}/>
         <button className="section-single-actions" onClick={() => setShowEditor('section-' + section.id)}>
           <i className="fa-solid fa-pen"></i>
         </button>
