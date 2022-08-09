@@ -53,6 +53,22 @@ export const editSection = (section) => async dispatch => {
   return response;
 }
 
+export const deleteSection = (sectionId) => async dispatch => {
+  const response = await csrfFetch(`/api/sections/${sectionId}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(deleteOne(output.sectionId));
+  }
+  return response;
+}
+
+
+export const editItemsSection = (item, startSection, endSection) => async dispatch => {
+  
+}
 // initial state
 const initialState = {};
 
@@ -66,10 +82,10 @@ const sectionsReducer = (state = initialState, action) => {
         // put items in their own sub-dict
         section.items = {};
         section.Items.forEach(item => {
-          section.items[item.id] = item;
+          section.items[`item-${item.id}`] = item;
         })
         delete section.Items;
-        newState[section.id] = section
+        newState[`section-${section.id}`] = section
       });
       return newState;
     case ADD_ONE:
@@ -78,15 +94,15 @@ const sectionsReducer = (state = initialState, action) => {
       action.section.items = {};
       if (action.section.Items) {
         action.section.Items.forEach(item => {
-          action.section.items[item.id] = item;
+          action.section.items[`item-${item.id}`] = item;
         })
         delete action.section.Items;
       }
-      newState[action.section.id] = action.section;
+      newState[`section-${action.section.id}`] = action.section;
       return newState;
     case DELETE_ONE:
       newState = { ...state };
-      delete newState[action.boardId];
+      delete newState[`section-${action.sectionId}`];
       return newState;
     default:
       return state;
