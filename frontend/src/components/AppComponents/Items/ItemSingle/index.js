@@ -10,9 +10,11 @@ function ItemSingle({ item, index }) {
       draggableId={'item-' + item.id}
       index={index}
     >
-      {(provided) => {
+      {(provided, snapshot) => {
+        let className = "item-single";
+        if (snapshot.isDragging) className += " dragging";
         return (
-          <div className="item-single"
+          <div className={className}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}

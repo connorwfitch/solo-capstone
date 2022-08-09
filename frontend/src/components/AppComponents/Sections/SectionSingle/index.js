@@ -9,7 +9,7 @@ function SectionSingle({ section, index }) {
   return (
     <div className="section-single">
       <p className="section-title">
-        {section.title + section.id}
+        {section.title}
       </p>
       <Droppable droppableId={'section-' + section.id}>
         {(provided) => (
