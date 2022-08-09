@@ -48,10 +48,39 @@
   flex-direction: column;
 }
 
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.section-title {
+  margin: 0;
+}
+
+.section-single-menu {
+  display: flex;
+}
+
+.section-single-actions {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #BBBBBB;
+}
+
+.section-single-actions:hover {
+  color: black;
+  background-color: #f2f2f2;
+}
+
 .items-holder {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   flex-grow: 1;
   border-radius: 8px;
 }
