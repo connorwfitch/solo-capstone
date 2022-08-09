@@ -6,7 +6,7 @@ module.exports = {
       // Board 1
       {
         title: 'Upcoming',
-        orderIds: ',1,2,3',
+        orderIds: '1,2,3',
         boardId: 1
       },
       {
@@ -23,7 +23,7 @@ module.exports = {
       // Board 2
       {
         title: 'Upcoming',
-        orderIds: ',4,5,6',
+        orderIds: '4,5,6',
         boardId: 2
       },
       {

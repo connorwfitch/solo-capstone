@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { Item } = require('../../db/models');
+const { Section, Item } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -52,6 +52,33 @@ router.patch('/:itemId', requireAuth, validateItem, asyncHandler(async (req, res
 
   return res.json({
     item
+  });
+}));
+
+// PATCH /api/items/:itemId/move (update an item's section and the orders of the involved sections)
+router.patch('/:itemId/move', requireAuth, asyncHandler(async (req, res) => {
+  const itemId = parseInt(req.params.itemId, 10);
+  const { startOrderIds, endOrderIds, sectionId } = req.body;
+
+  const item = await Item.findByPk(itemId);
+
+  // updating start section
+  const startSection = await Section.findByPk(item.sectionId, {
+    include: Item
+  });
+  await startSection.update({ orderIds: startOrderIds});
+
+  // updating the item
+  await item.update({ sectionId })
+
+  // updating end section
+  const endSection = await Section.findByPk(sectionId, {
+    include: Item
+  });
+  await endSection.update({ orderIds: endOrderIds});
+
+  return res.json({
+    sections: [startSection, endSection]
   });
 }));
 
