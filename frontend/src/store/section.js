@@ -97,6 +97,25 @@ export const deleteSection = (sectionId) => async dispatch => {
   return response;
 }
 
+export const createItem = (item) => async dispatch => {
+  const { title, details, sectionId } = item;
+  const response = await csrfFetch('/api/items', {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      details,
+      sectionId,
+    }),
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(addOne(output.section));
+    return 'Success';
+  }
+  return response;
+}
+
 export const editItemsSection = (data) => async dispatch => {
   const { itemId, startOrderIds, endOrderIds, sectionId } = data;
 
