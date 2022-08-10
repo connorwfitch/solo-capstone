@@ -27,7 +27,7 @@ const addOne = section => ({
 const addTwo = sections => ({
   type: ADD_TWO,
   sections
-})
+});
 
 const deleteOne = (sectionId, board) => ({
   type: DELETE_ONE,
@@ -67,14 +67,13 @@ export const createSection = (section) => async dispatch => {
 }
 
 export const editSection = (section) => async dispatch => {
-  const { sectionId, title, orderIds, boardId } = section;
+  const { sectionId, title, orderIds } = section;
 
   const response = await csrfFetch(`/api/sections/${sectionId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       title,
       orderIds,
-      boardId
     })
   });
 

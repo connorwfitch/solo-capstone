@@ -58,8 +58,7 @@ function BoardDetail({ showSidebar }) {
     return dispatch(editSection({
       sectionId: section.id,
       title: section.title,
-      orderIds: section.orderIds,
-      boardId: section.boardId
+      orderIds: section.orderIds
     }));
   }
 

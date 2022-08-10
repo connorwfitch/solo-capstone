@@ -49,13 +49,13 @@ router.post('/', requireAuth, validateSection, asyncHandler(async (req, res) => 
 // PATCH /api/sections/:sectionId (update a section)
 router.patch('/:sectionId', requireAuth, validateSection, asyncHandler(async (req, res) => {
   const sectionId = parseInt(req.params.sectionId, 10);
-  const { title, orderIds, boardId } = req.body;
+  const { title, orderIds } = req.body;
 
   const section = await Section.findByPk(sectionId, {
     include: Item,
   });
 
-  await section.update({ title, orderIds, boardId });
+  await section.update({ title, orderIds });
 
   return res.json({
     section

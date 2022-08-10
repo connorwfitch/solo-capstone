@@ -5,6 +5,7 @@ import { Droppable } from "react-beautiful-dnd";
 // Internal modules
 import ItemSingle from "../../Items/ItemSingle";
 import DeleteSectionModal from "../DeleteSection/DeleteSectionModal";
+import EditSectionModal from "../EditSection/EditSectionModal";
 
 function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setShowEditor }) {
 
@@ -13,9 +14,7 @@ function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setS
     buttons = (
       <div className="section-single-menu">
         <DeleteSectionModal section={section}/>
-        <button className="section-single-actions" onClick={() => setShowEditor('section-' + section.id)}>
-          <i className="fa-solid fa-pen"></i>
-        </button>
+        <EditSectionModal section={section}/>
         <button className="section-single-actions" onClick={() => setShowMenu('')}>
           <i className="fa-solid fa-ellipsis"></i>
         </button>
