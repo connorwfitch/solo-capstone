@@ -65,13 +65,26 @@ router.patch('/:sectionId', requireAuth, validateSection, asyncHandler(async (re
 // DELETE /api/sections/:sectionId (delete a section)
 router.delete('/:sectionId', requireAuth, asyncHandler(async (req, res) => {
   const sectionId = parseInt(req.params.sectionId, 10);
+  const sectionIdString = req.params.sectionId;
+
   const section = await Section.findByPk(sectionId);
 
+  // updating the orderIds on the parent board to remove the id
+  const board = await Board.findByPk(section.boardId);
+  let temp = board.orderIds.split(',');
+  temp = temp.filter((ele) => {
+    return ele !== sectionIdString;
+  });
+  temp = temp.join(',');
+  await board.update({ orderIds: temp });
+
+  // destroying the section
   await section.destroy();
 
   res.json({
     message: 'Success',
-    sectionId
+    sectionId,
+    board
   });
 }));
 

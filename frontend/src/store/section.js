@@ -29,9 +29,10 @@ const addTwo = sections => ({
   sections
 })
 
-const deleteOne = sectionId => ({
+const deleteOne = (sectionId, board) => ({
   type: DELETE_ONE,
-  sectionId
+  sectionId,
+  board
 });
 
 // thunks
@@ -92,7 +93,7 @@ export const deleteSection = (sectionId) => async dispatch => {
 
   if (response.ok) {
     const output = await response.json();
-    dispatch(deleteOne(output.sectionId));
+    dispatch(deleteOne(output.sectionId, output.board));
   }
   return response;
 }
