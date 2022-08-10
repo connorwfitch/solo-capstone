@@ -54,6 +54,7 @@ function EditBoardForm({ setShowModal, board }) {
         Title
         <input
           type="text"
+          autoFocus
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder='Title (required)'

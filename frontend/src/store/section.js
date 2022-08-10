@@ -85,7 +85,6 @@ export const editItemsSection = (data) => async dispatch => {
 
   if (response.ok) {
     const output = await response.json();
-    console.log(output.sections);
     dispatch(addTwo(output.sections));
   }
 

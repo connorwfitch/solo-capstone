@@ -75,6 +75,7 @@ function BoardDetail({ showSidebar }) {
     const newEndIds = endSection.orderIds.split(',');
     newEndIds.splice(destination.index, 0, draggableId.split('-')[1]);
     endSection.orderIds = newEndIds.join(',');
+    endSection.items[draggableId] = item;
 
     return dispatch(editItemsSection({
       itemId: item.id,
@@ -115,6 +116,7 @@ function BoardDetail({ showSidebar }) {
                 }
                 return null;
               })}
+              {/* Add Section Form */}
             </div>
           </DragDropContext>
       </div>

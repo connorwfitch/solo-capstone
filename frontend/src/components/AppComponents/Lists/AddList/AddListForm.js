@@ -52,6 +52,7 @@ function AddListForm({ setShowModal }) {
         Title
         <input
           type="text"
+          autoFocus
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder='Title (required)'

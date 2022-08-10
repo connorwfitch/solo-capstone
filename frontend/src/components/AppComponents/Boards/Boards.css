@@ -37,7 +37,7 @@
 }
 
 .section-single {
-  width: 300px;
+  width: 280px;
   padding: 10px;
   border: 1px solid #d3d3d3;
   box-sizing: border-box;
@@ -58,6 +58,10 @@
 
 .section-title {
   margin: 0;
+  flex-shrink: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .section-single-menu {
