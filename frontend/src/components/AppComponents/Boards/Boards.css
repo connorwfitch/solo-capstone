@@ -83,8 +83,8 @@
 
 .add-section-btn {
   cursor: pointer;
-  border: 2px dashed #d3d3d3;
-  color: black;
+  border: 1px dashed #d3d3d3;
+  color: #999999;
   background-color: white;
   width: 280px;
   height: 100px;
@@ -105,7 +105,7 @@
 
 .add-section-btn:hover {
   color: #E44332;
-  border: 2px dashed #E44332;
+  border: 1px dashed #E44332;
 }
 
 .items-holder {

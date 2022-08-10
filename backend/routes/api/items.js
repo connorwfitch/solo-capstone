@@ -36,8 +36,17 @@ router.post('/', requireAuth, validateItem, asyncHandler(async (req, res) => {
 
   const item = await Item.create({ title, details, sectionId });
 
+  // updating the orderIds on the parent section
+  const section = await Section.findByPk(sectionId, {
+    include: Item
+  });
+  let temp = section.orderIds.split(',');
+  temp.push(item.id)
+  temp = temp.join(',');
+  await section.update({ orderIds: temp });
+
   return res.json({
-    item
+    section
   });
 }));
 

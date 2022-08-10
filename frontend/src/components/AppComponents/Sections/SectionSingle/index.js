@@ -6,6 +6,7 @@ import { Droppable } from "react-beautiful-dnd";
 import ItemSingle from "../../Items/ItemSingle";
 import DeleteSectionModal from "../DeleteSection/DeleteSectionModal";
 import EditSectionModal from "../EditSection/EditSectionModal";
+import AddItemModal from "../../Items/AddItem/AddItemModal";
 
 function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setShowEditor }) {
 
@@ -36,6 +37,7 @@ function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setS
         </p>
         {buttons}
       </div>
+      <AddItemModal sectionId={section.id}/>
       <Droppable droppableId={'section-' + section.id}>
         {(provided, snapshot) => {
           let className = "items-holder";
