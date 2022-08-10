@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // types
 const LOAD_ALL = 'section/loadAll';
 const ADD_ONE = 'section/addOne';
+const CREATE_ONE = 'section/createOne';
 const ADD_TWO = 'section/addTwo';
 const DELETE_ONE = 'section/deleteOne';
 
@@ -10,6 +11,12 @@ const DELETE_ONE = 'section/deleteOne';
 const loadAll = sections => ({
   type: LOAD_ALL,
   sections
+});
+
+const createOne = (section, board) => ({
+  type: CREATE_ONE,
+  section,
+  board
 });
 
 const addOne = section => ({
@@ -36,6 +43,25 @@ export const getSectionsByBoard = (boardId) => async dispatch => {
     dispatch(loadAll(output.sections));
   }
 
+  return response;
+}
+
+export const createSection = (section) => async dispatch => {
+  const { title, boardId } = section;
+
+  const response = await csrfFetch('/api/sections', {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      boardId,
+    }),
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(createOne(output.section, output.board));
+    return 'Success';
+  }
   return response;
 }
 
@@ -120,6 +146,12 @@ const sectionsReducer = (state = initialState, action) => {
         })
         delete action.section.Items;
       }
+      newState[`section-${action.section.id}`] = action.section;
+      return newState;
+    case CREATE_ONE:
+      newState = { ...state };
+      // put items in their own sub-dict
+      action.section.items = {};
       newState[`section-${action.section.id}`] = action.section;
       return newState;
     case ADD_TWO:

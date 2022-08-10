@@ -9,6 +9,7 @@ import { getSectionsByBoard, editSection, editItemsSection } from '../../../stor
 import SectionSingle from '../Sections/SectionSingle';
 import NotFoundApp from '../NotFoundApp';
 import './Boards.css';
+import AddSectionModal from '../Sections/AddSection/AddSectionModal';
 
 
 function BoardDetail({ showSidebar }) {
@@ -116,7 +117,7 @@ function BoardDetail({ showSidebar }) {
                 }
                 return null;
               })}
-              {/* Add Section Form */}
+              <AddSectionModal boardId={board.id}/>
             </div>
           </DragDropContext>
       </div>

@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 
 // Internal modules
 const { requireAuth } = require('../../utils/auth');
-const { Section, Item } = require('../../db/models');
+const { Board, Section, Item } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
@@ -33,8 +33,16 @@ router.post('/', requireAuth, validateSection, asyncHandler(async (req, res) => 
 
   const section = await Section.create({ title, orderIds: '', boardId });
 
+  // updating the orderIds on the parent board
+  const board = await Board.findByPk(boardId);
+  let temp = board.orderIds.split(',');
+  temp.push(section.id)
+  temp = temp.join(',');
+  await board.update({ orderIds: temp});
+
   return res.json({
-    section
+    section,
+    board
   });
 }));
 
