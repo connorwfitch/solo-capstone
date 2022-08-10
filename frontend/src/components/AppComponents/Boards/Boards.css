@@ -108,6 +108,29 @@
   border: 1px dashed #E44332;
 }
 
+.add-item-btn {
+  border: 1px dashed #d3d3d3;
+  color: #999999;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.add-item-btn > p {
+  margin: 0;
+}
+
+.add-item-btn:hover {
+  color: #E44332;
+  border: 1px dashed #E44332;
+}
+
 .items-holder {
   display: flex;
   flex-direction: column;
@@ -118,6 +141,12 @@
 
 .items-holder.dragging-over {
   background-color: #f2f2f2;
+}
+
+.item-add-details {
+  border: none;
+  resize: none;
+  outline: none;
 }
 
 .item-single {

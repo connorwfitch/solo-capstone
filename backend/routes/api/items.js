@@ -41,7 +41,7 @@ router.post('/', requireAuth, validateItem, asyncHandler(async (req, res) => {
     include: Item
   });
   let temp = section.orderIds.split(',');
-  temp.push(item.id)
+  temp.unshift(item.id)
   temp = temp.join(',');
   await section.update({ orderIds: temp });
 
