@@ -37,7 +37,7 @@
 }
 
 .section-single {
-  width: 300px;
+  width: 280px;
   padding: 10px;
   border: 1px solid #d3d3d3;
   box-sizing: border-box;
@@ -58,6 +58,10 @@
 
 .section-title {
   margin: 0;
+  flex-shrink: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .section-single-menu {
@@ -75,6 +79,32 @@
 .section-single-actions:hover {
   color: black;
   background-color: #f2f2f2;
+}
+
+.add-section-btn {
+  background-color: #E44332;
+  color: white;
+  cursor: pointer;
+  border: 0px solid transparent;
+  width: 280px;
+  height: 100px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.add-section-btn > p {
+  margin: 0;
+}
+
+.add-section-btn:hover {
+  background-color: #e44432cd;
 }
 
 .items-holder {

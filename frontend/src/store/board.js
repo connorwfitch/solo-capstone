@@ -3,7 +3,9 @@ import { csrfFetch } from "./csrf";
 // types
 const LOAD_ALL = 'board/loadAll';
 const ADD_ONE = 'board/addOne';
+const SECTION_CREATE_ONE = 'section/createOne';
 const DELETE_ONE = 'board/deleteOne';
+const SECTION_DELETE_ONE = 'section/deleteOne';
 
 // action creators
 const loadAll = boards => ({
@@ -97,6 +99,14 @@ const boardsReducer = (state = initialState, action) => {
       });
       return newState;
     case ADD_ONE:
+      newState = { ...state };
+      newState[action.board.id] = action.board;
+      return newState;
+    case SECTION_CREATE_ONE:
+      newState = { ...state };
+      newState[action.board.id] = action.board;
+      return newState;
+    case SECTION_DELETE_ONE:
       newState = { ...state };
       newState[action.board.id] = action.board;
       return newState;

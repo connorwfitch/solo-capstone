@@ -77,6 +77,7 @@ function EditTaskInline({ task, hereCondition, setShowEditor }) {
       <input
         className='task-inline-title'
         type="text"
+        autoFocus
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required

@@ -9,6 +9,7 @@ import { getSectionsByBoard, editSection, editItemsSection } from '../../../stor
 import SectionSingle from '../Sections/SectionSingle';
 import NotFoundApp from '../NotFoundApp';
 import './Boards.css';
+import AddSectionModal from '../Sections/AddSection/AddSectionModal';
 
 
 function BoardDetail({ showSidebar }) {
@@ -57,8 +58,7 @@ function BoardDetail({ showSidebar }) {
     return dispatch(editSection({
       sectionId: section.id,
       title: section.title,
-      orderIds: section.orderIds,
-      boardId: section.boardId
+      orderIds: section.orderIds
     }));
   }
 
@@ -75,6 +75,7 @@ function BoardDetail({ showSidebar }) {
     const newEndIds = endSection.orderIds.split(',');
     newEndIds.splice(destination.index, 0, draggableId.split('-')[1]);
     endSection.orderIds = newEndIds.join(',');
+    endSection.items[draggableId] = item;
 
     return dispatch(editItemsSection({
       itemId: item.id,
@@ -115,6 +116,7 @@ function BoardDetail({ showSidebar }) {
                 }
                 return null;
               })}
+              <AddSectionModal boardId={board.id}/>
             </div>
           </DragDropContext>
       </div>

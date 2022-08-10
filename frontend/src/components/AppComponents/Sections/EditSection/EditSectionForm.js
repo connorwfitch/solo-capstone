@@ -1,23 +1,21 @@
 // External modules
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // Internal modules
-import { createList } from "../../../../store/list";
-import ColorSelector from "../../../Misc/ColorSelector";
+import { editSection } from "../../../../store/section";
 
-function AddListForm({ setShowModal }) {
-  const user = useSelector(state => state.session.user);
+function EditBoardForm({ setShowModal, section }) {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("");
-  const [color, setColor] = useState("#E44332");
+  const [title, setTitle] = useState(section.title);
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+
+  const handleEdit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(createList({ title, color, userId: user.id }))
+    return dispatch(editSection({ sectionId: section.id, title, orderIds: section.orderIds }))
       .catch(
         async (res) => {
           const data = await res.json();
@@ -33,15 +31,16 @@ function AddListForm({ setShowModal }) {
 
   useEffect(() => {
     const newErrors = [];
+    if (!title.length) newErrors.push('Must include a title.')
     if (title.length > 50) newErrors.push('Title may be at most 50 characters long.')
-    if (title === 'Inbox') newErrors.push('May not name list \'Inbox\'')
     setErrors(newErrors);
   }, [title]);
-  
+
+
   return (
-    <form className='modal-form' onSubmit={handleSubmit}>
+    <form className='modal-form'>
       <h2>
-        Add list
+        Edit section
       </h2>
       {errors.length > 0 && <ul className="errors">
         {errors.map((error, i) => (
@@ -59,21 +58,15 @@ function AddListForm({ setShowModal }) {
           required
         />
       </label>
-      <label>
-        Color
-        <ColorSelector 
-          defaultVal={color}
-          setColor={setColor}
-        />
-      </label>
-      <button 
-        type="submit" 
+      <button
         className="btn-large btn-red"
+        type="submit"
+        onClick={handleEdit}
         disabled={errors.length}
       >
-        Add
+        Submit
       </button>
-      <button 
+      <button
         className="btn-large btn-white"
         type='button'
         onClick={(e) => {
@@ -87,4 +80,4 @@ function AddListForm({ setShowModal }) {
   );
 };
 
-export default AddListForm;
+export default EditBoardForm;

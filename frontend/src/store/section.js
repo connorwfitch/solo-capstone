@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // types
 const LOAD_ALL = 'section/loadAll';
 const ADD_ONE = 'section/addOne';
+const CREATE_ONE = 'section/createOne';
 const ADD_TWO = 'section/addTwo';
 const DELETE_ONE = 'section/deleteOne';
 
@@ -10,6 +11,12 @@ const DELETE_ONE = 'section/deleteOne';
 const loadAll = sections => ({
   type: LOAD_ALL,
   sections
+});
+
+const createOne = (section, board) => ({
+  type: CREATE_ONE,
+  section,
+  board
 });
 
 const addOne = section => ({
@@ -20,11 +27,12 @@ const addOne = section => ({
 const addTwo = sections => ({
   type: ADD_TWO,
   sections
-})
+});
 
-const deleteOne = sectionId => ({
+const deleteOne = (sectionId, board) => ({
   type: DELETE_ONE,
-  sectionId
+  sectionId,
+  board
 });
 
 // thunks
@@ -39,15 +47,33 @@ export const getSectionsByBoard = (boardId) => async dispatch => {
   return response;
 }
 
+export const createSection = (section) => async dispatch => {
+  const { title, boardId } = section;
+
+  const response = await csrfFetch('/api/sections', {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      boardId,
+    }),
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(createOne(output.section, output.board));
+    return 'Success';
+  }
+  return response;
+}
+
 export const editSection = (section) => async dispatch => {
-  const { sectionId, title, orderIds, boardId } = section;
+  const { sectionId, title, orderIds } = section;
 
   const response = await csrfFetch(`/api/sections/${sectionId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       title,
       orderIds,
-      boardId
     })
   });
 
@@ -66,7 +92,7 @@ export const deleteSection = (sectionId) => async dispatch => {
 
   if (response.ok) {
     const output = await response.json();
-    dispatch(deleteOne(output.sectionId));
+    dispatch(deleteOne(output.sectionId, output.board));
   }
   return response;
 }
@@ -85,7 +111,6 @@ export const editItemsSection = (data) => async dispatch => {
 
   if (response.ok) {
     const output = await response.json();
-    console.log(output.sections);
     dispatch(addTwo(output.sections));
   }
 
@@ -121,6 +146,12 @@ const sectionsReducer = (state = initialState, action) => {
         })
         delete action.section.Items;
       }
+      newState[`section-${action.section.id}`] = action.section;
+      return newState;
+    case CREATE_ONE:
+      newState = { ...state };
+      // put items in their own sub-dict
+      action.section.items = {};
       newState[`section-${action.section.id}`] = action.section;
       return newState;
     case ADD_TWO:
