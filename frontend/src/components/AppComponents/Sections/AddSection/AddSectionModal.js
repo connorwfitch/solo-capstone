@@ -12,7 +12,7 @@ function AddSectionModal({ boardId }) {
     <>
       <button className='add-section-btn' onClick={() => setShowModal(true)}>
         <i className="fa-solid fa-plus"></i>
-        Add section
+        <p>Add section</p>
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
