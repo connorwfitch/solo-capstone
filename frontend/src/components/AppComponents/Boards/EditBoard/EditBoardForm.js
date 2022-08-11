@@ -17,7 +17,7 @@ function EditBoardForm({ setShowModal, board }) {
   const handleEdit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(editBoard({ boardId: board.id, title, color }))
+    return dispatch(editBoard({ boardId: board.id, title, color, orderIds: board.orderIds }))
       .catch(
         async (res) => {
           const data = await res.json();
