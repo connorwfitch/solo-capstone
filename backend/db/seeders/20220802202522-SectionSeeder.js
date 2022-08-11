@@ -6,7 +6,7 @@ module.exports = {
       // Board 1
       {
         title: 'Upcoming',
-        orderIds: '1,2,3',
+        orderIds: '1,2,3,4',
         boardId: 1
       },
       {
@@ -15,7 +15,7 @@ module.exports = {
         boardId: 1
       },
       {
-        title: 'Complete',
+        title: 'Completed',
         orderIds: '',
         boardId: 1
       },
@@ -23,7 +23,7 @@ module.exports = {
       // Board 2
       {
         title: 'Upcoming',
-        orderIds: '4,5,6',
+        orderIds: '5,6,7',
         boardId: 2
       },
       {
@@ -32,8 +32,8 @@ module.exports = {
         boardId: 2
       },
       {
-        title: 'Complete',
-        orderIds: '',
+        title: 'Completed',
+        orderIds: '8',
         boardId: 2
       },
 

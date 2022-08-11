@@ -6,6 +6,7 @@ module.exports = {
       // Board 1
       {
         title: 'Synergize team infrastructure',
+        details: 'VERY IMPORTANT',
         sectionId: 1
       },
       {
@@ -16,7 +17,11 @@ module.exports = {
         title: 'Streamline operations',
         sectionId: 1
       },
-
+      {
+        title: 'Invent more jargon',
+        details: 'Must complete by EOD Friday',
+        sectionId: 1
+      },
       // Board 2
       {
         title: 'Secure funding for West Dakota',
@@ -27,8 +32,14 @@ module.exports = {
         sectionId: 4
       },
       {
-        title: 'Profit $$$',
+        title: 'Profit',
+        details: '$$$$$$$',
         sectionId: 4
+      },
+      {
+        title: 'Hello there',
+        details: 'GENERAL KENOBI',
+        sectionId: 6
       },
 
     ], {});
