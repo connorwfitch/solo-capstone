@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 // Internal modules
 import { getSectionsByBoard, editSection, editItemsSection } from '../../../store/section';
@@ -10,6 +10,7 @@ import SectionSingle from '../Sections/SectionSingle';
 import NotFoundApp from '../NotFoundApp';
 import './Boards.css';
 import AddSectionModal from '../Sections/AddSection/AddSectionModal';
+import { editBoard } from '../../../store/board';
 
 
 function BoardDetail({ showSidebar }) {
@@ -29,11 +30,16 @@ function BoardDetail({ showSidebar }) {
   }, [dispatch, boardId])
 
   const handleDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId, type } = result;
 
     // check if dropped illegally
     if (!destination) {
       return;
+    }
+
+    // check for section reordering
+    if (type === "column") {
+      return handleColumnMove(destination, source, draggableId);
     }
 
     // check for moved within same section
@@ -42,6 +48,21 @@ function BoardDetail({ showSidebar }) {
     } else {
       return moveAcrossSections(destination, source, draggableId);
     }
+  }
+
+  const handleColumnMove = (destination, source, draggableId) => {
+    if (destination.index === source.index) return;
+    const newOrderIds = board.orderIds.split(',');
+    newOrderIds.splice(source.index, 1);
+    newOrderIds.splice(destination.index, 0, draggableId.split('-')[1]);
+    board.orderIds = newOrderIds.join(',');
+
+    return dispatch(editBoard({
+      boardId: board.id,
+      title: board.title,
+      color: board.color,
+      orderIds: board.orderIds
+    }));
   }
 
   const moveWithinSection = (destination, source, draggableId) => {
@@ -98,23 +119,33 @@ function BoardDetail({ showSidebar }) {
       <div className='boards-main'>
         <h1 className='board-title'>{board.title}</h1>
           <DragDropContext onDragEnd={handleDragEnd}>
-            <div className='sections-holder'>
-              {board.orderIds.split(',').map((sectionId, index) => {
-                if (sections[`section-${sectionId}`]) {
-                  return (
-                    <SectionSingle
-                      key={`section-${sectionId}`}
-                      section={sections[`section-${sectionId}`]}
-                      index={index}
-                      showMenu={showMenu}
-                      setShowMenu={setShowMenu}
-                    />
-                  )
-                }
-                return null;
-              })}
-              <AddSectionModal boardId={board.id}/>
-            </div>
+            <Droppable droppableId={`board-${board.id}`} direction="horizontal" type="column">
+              {(provided) => (
+                <div 
+                  className='sections-holder'
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+
+                >
+                  {board.orderIds.split(',').map((sectionId, index) => {
+                    if (sections[`section-${sectionId}`]) {
+                      return (
+                        <SectionSingle
+                          key={`section-${sectionId}`}
+                          section={sections[`section-${sectionId}`]}
+                          index={index}
+                          showMenu={showMenu}
+                          setShowMenu={setShowMenu}
+                        />
+                      )
+                    }
+                    return null;
+                  })}
+                  {provided.placeholder}
+                  <AddSectionModal boardId={board.id} />
+                </div>
+              )}
+            </Droppable>
           </DragDropContext>
       </div>
     </div>

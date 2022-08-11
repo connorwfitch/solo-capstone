@@ -58,11 +58,11 @@ router.get('/:boardId/sections', requireAuth, asyncHandler(async (req, res) => {
 // PATCH /api/boards/:boardId (update a board)
 router.patch('/:boardId', requireAuth, validateBoard, asyncHandler(async (req, res) => {
   const boardId = parseInt(req.params.boardId, 10);
-  const { title, color } = req.body;
+  const { title, color, orderIds } = req.body;
 
   const board = await Board.findByPk(boardId);
 
-  await board.update({ title, color })
+  await board.update({ title, color, orderIds })
 
   return res.json({
     board

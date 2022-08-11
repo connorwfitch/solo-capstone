@@ -54,12 +54,13 @@ export const createBoard = (board) => async dispatch => {
 }
 
 export const editBoard = (board) => async dispatch => {
-  const { boardId, title, color } = board;
+  const { boardId, title, color, orderIds } = board;
   const response = await csrfFetch(`/api/boards/${boardId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       title,
       color,
+      orderIds,
     }),
   });
 
