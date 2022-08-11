@@ -20,12 +20,11 @@ function BoardDetail({ showSidebar }) {
   const board = boards[boardId];
 
   const [showMenu, setShowMenu] = useState('');
-  const [showEditor, setShowEditor] = useState('');
+
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setShowEditor('');
     dispatch(getSectionsByBoard(boardId));
   }, [dispatch, boardId])
 
@@ -109,8 +108,6 @@ function BoardDetail({ showSidebar }) {
                       index={index}
                       showMenu={showMenu}
                       setShowMenu={setShowMenu}
-                      showEditor={showEditor}
-                      setShowEditor={setShowEditor}
                     />
                   )
                 }

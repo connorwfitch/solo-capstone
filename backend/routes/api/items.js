@@ -94,13 +94,27 @@ router.patch('/:itemId/move', requireAuth, asyncHandler(async (req, res) => {
 // DELETE /api/items/:itemId (delete an item)
 router.delete('/:itemId', requireAuth, asyncHandler(async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
+  const itemIdString = req.params.itemId;
+
   const item = await Item.findByPk(itemId);
 
+  // updating the orderIds on the parent section to remove the id
+  const section = await Section.findByPk(item.sectionId, {
+    include: Item
+  });
+  let temp = section.orderIds.split(',');
+  temp = temp.filter((ele) => {
+    return ele !== itemIdString;
+  });
+  temp = temp.join(',');
+  await section.update({ orderIds: temp });
+
+  // destroying the item
   await item.destroy();
 
   res.json({
     message: 'Success',
-    itemId
+    section
   });
 }));
 

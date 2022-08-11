@@ -136,6 +136,18 @@ export const editItemsSection = (data) => async dispatch => {
   return response;
 }
 
+export const deleteItem = (itemId) => async dispatch => {
+  const response = await csrfFetch(`/api/items/${itemId}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const output = await response.json();
+    dispatch(addOne(output.section));
+  }
+  return response;
+}
+
 // initial state
 const initialState = {};
 
