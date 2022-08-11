@@ -53,14 +53,18 @@ router.post('/', requireAuth, validateItem, asyncHandler(async (req, res) => {
 // PATCH /api/items/:itemId (update an item)
 router.patch('/:itemId', requireAuth, validateItem, asyncHandler(async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
-  const { title, details, sectionId } = req.body;
+  const { title, details } = req.body;
 
   const item = await Item.findByPk(itemId);
 
-  await item.update({ title, details, sectionId })
+  await item.update({ title, details });
+
+  const section = await Section.findByPk(item.sectionId, {
+    include: Item
+  });
 
   return res.json({
-    item
+    section
   });
 }));
 
@@ -94,13 +98,27 @@ router.patch('/:itemId/move', requireAuth, asyncHandler(async (req, res) => {
 // DELETE /api/items/:itemId (delete an item)
 router.delete('/:itemId', requireAuth, asyncHandler(async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
+  const itemIdString = req.params.itemId;
+
   const item = await Item.findByPk(itemId);
 
+  // updating the orderIds on the parent section to remove the id
+  const section = await Section.findByPk(item.sectionId, {
+    include: Item
+  });
+  let temp = section.orderIds.split(',');
+  temp = temp.filter((ele) => {
+    return ele !== itemIdString;
+  });
+  temp = temp.join(',');
+  await section.update({ orderIds: temp });
+
+  // destroying the item
   await item.destroy();
 
   res.json({
     message: 'Success',
-    itemId
+    section
   });
 }));
 

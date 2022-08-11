@@ -8,7 +8,7 @@ import DeleteSectionModal from "../DeleteSection/DeleteSectionModal";
 import EditSectionModal from "../EditSection/EditSectionModal";
 import AddItemModal from "../../Items/AddItem/AddItemModal";
 
-function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setShowEditor }) {
+function SectionSingle({ section, index, showMenu, setShowMenu }) {
 
   let buttons;
   if ('section-' + section.id === showMenu) {
@@ -55,6 +55,8 @@ function SectionSingle({ section, index, showMenu, setShowMenu, showEditor, setS
                       key={`item-${itemId}`}
                       item={section.items[`item-${itemId}`]}
                       index={index}
+                      showMenu={showMenu}
+                      setShowMenu={setShowMenu}
                     />
                   )
                 }

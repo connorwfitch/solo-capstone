@@ -156,6 +156,9 @@
   box-sizing: border-box;
   border-radius: 8px;
   background-color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .item-single:hover {
@@ -164,4 +167,46 @@
 
 .item-single.dragging {
   box-shadow: 0px 0px 8px grey;
+}
+
+.item-single-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.item-single-title {
+  font-size: 18px;
+  font-weight: lighter;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.item-single-details {
+  font-size: 14px;
+  font-weight: lighter;
+  color: #999999;
+  overflow-wrap: break-word;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.item-single-menu {
+  display: flex;
+}
+
+.item-single-actions {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #BBBBBB;
+}
+
+.item-single-actions:hover {
+  color: black;
+  background-color: #f2f2f2;
 }
