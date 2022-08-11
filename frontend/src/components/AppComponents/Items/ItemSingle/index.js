@@ -19,7 +19,16 @@ function ItemSingle({ item, index }) {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <p>{item.title}</p>
+            <div className="item-single-text">
+              <p className="item-single-title">
+                {item.title}
+              </p>
+              {item.details && (
+                <p className="item-single-details">
+                  {item.details}
+                </p>
+              )}
+            </div>
           </div>
         )
       }}

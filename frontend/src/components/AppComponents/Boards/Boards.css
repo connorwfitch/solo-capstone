@@ -156,6 +156,7 @@
   box-sizing: border-box;
   border-radius: 8px;
   background-color: white;
+  display: flex;
 }
 
 .item-single:hover {
@@ -164,4 +165,29 @@
 
 .item-single.dragging {
   box-shadow: 0px 0px 8px grey;
+}
+
+.item-single-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.item-single-title {
+  font-size: 18px;
+  font-weight: lighter;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.item-single-details {
+  font-size: 14px;
+  font-weight: lighter;
+  color: #999999;
+  overflow-wrap: break-word;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: normal;
 }
