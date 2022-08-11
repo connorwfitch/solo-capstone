@@ -9,7 +9,7 @@ function EditBoardForm({ setShowModal, item }) {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(item.title);
-  const [details, setDetails] = useState(item.details);
+  const [details, setDetails] = useState(item.details ? item.details : '');
   const [errors, setErrors] = useState([]);
 
 
