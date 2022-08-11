@@ -35,13 +35,16 @@ Twodoist is a clone of the popular task-manager app Todoist. Twodoist is built u
 <img width="1512" alt="Screen Shot 2022-07-11 at 6 53 50 PM" src="https://user-images.githubusercontent.com/49599743/178373068-d4a7b625-3837-4d05-85b1-03d9c179be13.png">
 
 #### App main
-<img width="1512" alt="Screen Shot 2022-07-11 at 6 56 02 PM" src="https://user-images.githubusercontent.com/49599743/178373098-5d3713ce-4e50-4fdf-b263-5c9d9b81b7c5.png">
+<img width="1511" alt="main" src="https://user-images.githubusercontent.com/49599743/184197546-29838bb3-fd8d-42c8-8293-e073fc7af578.png">
 
-#### Task Creation
-<img width="1512" alt="Screen Shot 2022-07-11 at 6 57 22 PM" src="https://user-images.githubusercontent.com/49599743/178373116-fdf27ce4-930d-4e7a-84c0-28cd5b109fec.png">
+#### Task creation
+<img width="1512" alt="task" src="https://user-images.githubusercontent.com/49599743/184197613-b6c54924-e2d1-487e-b31f-665b0aa00ab8.png">
 
 #### List creation
-<img width="1512" alt="Screen Shot 2022-07-11 at 6 58 07 PM" src="https://user-images.githubusercontent.com/49599743/178373141-ff7ced04-487c-434b-88c5-ebabaeb669c0.png">
+<img width="1512" alt="list" src="https://user-images.githubusercontent.com/49599743/184197668-89865cea-3c18-4e04-95b6-5888c6c3540b.png">
+
+### Board view
+<img width="1512" alt="board" src="https://user-images.githubusercontent.com/49599743/184197723-1a3eebc5-3c8b-4722-8ebe-41738842823d.png">
 
 
 ### Installation Instructions
