@@ -53,14 +53,18 @@ router.post('/', requireAuth, validateItem, asyncHandler(async (req, res) => {
 // PATCH /api/items/:itemId (update an item)
 router.patch('/:itemId', requireAuth, validateItem, asyncHandler(async (req, res) => {
   const itemId = parseInt(req.params.itemId, 10);
-  const { title, details, sectionId } = req.body;
+  const { title, details } = req.body;
 
   const item = await Item.findByPk(itemId);
 
-  await item.update({ title, details, sectionId })
+  await item.update({ title, details });
+
+  const section = await Section.findByPk(item.sectionId, {
+    include: Item
+  });
 
   return res.json({
-    item
+    section
   });
 }));
 
