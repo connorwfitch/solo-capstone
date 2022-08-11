@@ -34,53 +34,57 @@ function SectionSingle({ section, index, showMenu, setShowMenu }) {
       draggableId={'section-' + section.id}
       index={index}
     >
-      {(provided) => (
-        <div 
-          className="section-single"
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-        >
+      {(provided, snapshot) => {
+        let className = "section-single";
+        if (snapshot.isDragging) className += " dragging";
+        return (
           <div 
-            className="section-header"
-            {...provided.dragHandleProps}
+            className={className}
+            {...provided.draggableProps}
+            ref={provided.innerRef}
           >
-            <p className="section-title">
-              {section.title}
-            </p>
-            {buttons}
+            <div 
+              className="section-header"
+              {...provided.dragHandleProps}
+            >
+              <p className="section-title">
+                {section.title}
+              </p>
+              {buttons}
+            </div>
+            <AddItemModal sectionId={section.id} />
+            <Droppable droppableId={'section-' + section.id}>
+              {(provided, snapshot) => {
+                let className = "items-holder";
+                if (snapshot.isDraggingOver) className += " dragging-over";
+                return (
+                  <div
+                    className={className}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {section.orderIds.split(',').map((itemId, index) => {
+                      if (section.items[`item-${itemId}`]) {
+                        return (
+                          <ItemSingle
+                            key={`item-${itemId}`}
+                            item={section.items[`item-${itemId}`]}
+                            index={index}
+                            showMenu={showMenu}
+                            setShowMenu={setShowMenu}
+                          />
+                        )
+                      }
+                      return null;
+                    })}
+                    {provided.placeholder}
+                  </div>
+                )
+              }}
+            </Droppable>
           </div>
-          <AddItemModal sectionId={section.id} />
-          <Droppable droppableId={'section-' + section.id}>
-            {(provided, snapshot) => {
-              let className = "items-holder";
-              if (snapshot.isDraggingOver) className += " dragging-over";
-              return (
-                <div
-                  className={className}
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {section.orderIds.split(',').map((itemId, index) => {
-                    if (section.items[`item-${itemId}`]) {
-                      return (
-                        <ItemSingle
-                          key={`item-${itemId}`}
-                          item={section.items[`item-${itemId}`]}
-                          index={index}
-                          showMenu={showMenu}
-                          setShowMenu={setShowMenu}
-                        />
-                      )
-                    }
-                    return null;
-                  })}
-                  {provided.placeholder}
-                </div>
-              )
-            }}
-          </Droppable>
-        </div>
-      )}
+        )
+      }}
     </Draggable>
   )
 }

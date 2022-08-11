@@ -49,6 +49,10 @@
   background-color: white;
 }
 
+.section-single.dragging {
+  box-shadow: 0px 0px 4px grey;
+}
+
 .section-header {
   display: flex;
   flex-direction: row;
